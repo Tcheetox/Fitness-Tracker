@@ -16,3 +16,12 @@
 
 body {
 }
+
+.nav-item.separator {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.nav-item.login-item {
+  margin-left: 3rem;
+}
