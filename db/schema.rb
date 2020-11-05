@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_170808) do
+ActiveRecord::Schema.define(version: 2020_11_05_154335) do
   create_table 'activities', force: :cascade do |t|
     t.string 'name'
     t.datetime 'date'
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 2020_11_04_170808) do
     t.datetime 'remember_created_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'first_name', default: ''
+    t.string 'last_name', default: ''
+    t.string 'country', default: ''
+    t.string 'phone', default: ''
+    t.integer 'gender'
     t.index %w[email], name: 'index_users_on_email', unique: true
     t.index %w[reset_password_token],
             name: 'index_users_on_reset_password_token', unique: true
