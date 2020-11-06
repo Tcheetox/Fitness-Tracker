@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-class Users::UnlocksController < Devise::UnlocksController
-  # GET /resource/unlock/new
-  # def new
-  #   super
-  # end
-
+class Users::UnlocksController < Devise::UnlocksController # end #   super # def new # GET /resource/unlock/new
   # POST /resource/unlock
   # def create
   #   super

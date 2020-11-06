@@ -58,6 +58,20 @@
   position: relative;
   top: -0.1rem;
 }
+.form-wrapper .custom-input{
+  padding:unset;
+  border:none;
+  background-color:white;
+  height:1.8rem;
+  margin: auto 0.5rem auto 1rem;
+  font-weight:600;
+}
+.form-wrapper .fa{
+  margin:auto auto auto 0;
+  color: #888888;
+  font-size: 0.8rem;
+  cursor:pointer;
+}
 
 .shared-links-wrapper {
   display: flex;
