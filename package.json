@@ -1,9 +1,12 @@
 {
   "name": "fitness_tracker",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@rails/webpacker": "5.2.1"
+  },
   "devDependencies": {
     "@prettier/plugin-ruby": "^0.20.1",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "webpack-dev-server": "^3.11.0"
   }
 }

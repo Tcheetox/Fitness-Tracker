@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController 
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/edit
   #def edit
@@ -29,6 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   # end
+  
   # def update
   #   require 'logger'
   #   logger = Logger.new(STDOUT)
@@ -38,17 +39,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
   # TODO: ask Dioni about this nasty trick
   def update_resource(resource, params)
-    if request.request_method == "PUT"
+    if [:email, :password, :password_confirmation].any? {|k| params.key?(k)}
       resource.update_with_password(params)
-    elsif request.request_method == "PATCH"
+    else
       resource.update_without_password(params)
     end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
