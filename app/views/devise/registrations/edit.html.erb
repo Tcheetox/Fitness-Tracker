@@ -1,4 +1,25 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<div class='card form-wrapper form-profile'>
+<div class='card-body'>
+
+  <div class='card-title'>
+    <h2>Edit profile</h2>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
+    
+    <div class="form-group row">
+      <%= f.label :first_name, :class => 'col-form-label' %>
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", :class => 'form-control', :placeholder => 'First name' %>
+    </div>
+
+    <div class="form-group register-group">
+      <%= f.submit "Update", :class => 'btn btn-primary' %>
+    </div>
+
+  <% end %>
+
+<h2>Change user</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -41,3 +62,6 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+  </div>
+</div>
