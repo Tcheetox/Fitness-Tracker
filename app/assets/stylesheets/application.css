@@ -29,15 +29,10 @@
   max-width: 400px;
   margin: 3rem auto auto auto;
 }
-.form-profile {
-  max-width: unset;
+.form-group.row {
+  margin: 0 0 0.5rem 0;
 }
-.form-profile .form-group {
-  margin: unset;
-}
-.form-profile .form-group input {
-  width: auto;
-}
+
 .form-wrapper h2 {
   margin: 0 auto 1rem auto;
   width: max-content;
@@ -58,19 +53,21 @@
   position: relative;
   top: -0.1rem;
 }
-.form-wrapper .custom-input{
-  padding:unset;
-  border:none;
-  background-color:white;
-  height:1.8rem;
-  margin: auto 0.5rem auto 1rem;
-  font-weight:600;
+.form-wrapper .custom-input {
+  padding: unset;
+  border: none;
+  background-color: white;
+  margin: auto 0.5rem auto 1.5rem;
+  font-weight: 600;
 }
-.form-wrapper .fa{
-  margin:auto auto auto 0;
+.form-wrapper select.custom-input:disabled {
+  appearance: none;
+}
+.form-wrapper .fa {
+  margin: auto auto auto 0;
   color: #888888;
   font-size: 0.8rem;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .shared-links-wrapper {

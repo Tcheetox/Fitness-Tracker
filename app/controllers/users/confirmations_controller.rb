@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-class Users::ConfirmationsController < Devise::ConfirmationsController # end #   super # def new # GET /resource/confirmation/new
-  # POST /resource/confirmation
-  # def create
-  #   super
-  # end
-
+class Users::ConfirmationsController < Devise::ConfirmationsController # end #   super # def create # POST /resource/confirmation # end #   super # def new # GET /resource/confirmation/new
   # GET /resource/confirmation?confirmation_token=abcdef
   # def show
   #   super

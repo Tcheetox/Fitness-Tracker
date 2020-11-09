@@ -49,7 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: %i[first_name last_name country]
+      keys: %i[first_name last_name country phone gender]
     )
   end
 

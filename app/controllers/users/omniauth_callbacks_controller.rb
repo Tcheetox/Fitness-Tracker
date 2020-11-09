@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController # devise :omniauthable, omniauth_providers: [:twitter] # You should configure your model like this:
-  # You should also create an action method in this controller like this:
-  # def twitter
-  # end
-
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController # end # def twitter # You should also create an action method in this controller like this: # devise :omniauthable, omniauth_providers: [:twitter] # You should configure your model like this:
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
