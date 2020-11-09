@@ -14,6 +14,10 @@
  *= require_self
  */
 
+body {
+  outline: none !important;
+}
+
 /* HEADER */
 .nav-item.separator {
   padding-top: 0.5rem;
@@ -74,4 +78,16 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
+}
+
+.edit-profile-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+  justify-content: space-between;
+}
+.edit-profile-wrapper .card {
+  flex-basis: 50%;
+  margin: 3rem 1rem 0rem 1rem;
 }

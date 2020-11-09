@@ -1,101 +1,134 @@
 <%= javascript_tag 'adjustProfile()' %>
 
-<div class='card form-wrapper'>
-<div class='card-body'>
+<div class='edit-profile-wrapper'>
 
-  <div class='card-title'>
-    <h2>Edit profile</h2>
-  </div>
+  <div class='card form-wrapper'>
+  <div class='card-body'>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-
-    <div class="form-group row">
-      <%= f.label :first_name, :class => 'col-form-label' %>
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["first_name"].length}ch;" %>
-      <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:first_name}" %>
+    <div class='card-title'>
+      <h2>Edit profile</h2>
     </div>
 
-    <div class="form-group row">
-      <%= f.label :last_name, :class => 'col-form-label' %>
-      <%= f.text_field :last_name, autocomplete: "family-name", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["last_name"].length}ch;" %>
-      <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:last_name}" %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+        <div class="form-group row">
+          <%= f.label :first_name, :class => 'col-form-label' %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["first_name"].length}ch;" %>
+          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:first_name}" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :last_name, :class => 'col-form-label' %>
+          <%= f.text_field :last_name, autocomplete: "family-name", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["last_name"].length}ch;" %>
+          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:last_name}" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :gender, :class => 'col-form-label' %>
+          <%= f.select(:gender, options_for_select(['']  + User.genders.keys.map {|gender| [gender.humanize, gender]}, resource["gender"]), {}, {:class => 'form-control custom-input', :disabled => true, :style => "width: #{User.genders.keys.max_by(&:size).length}ch;"}) %>
+          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:gender}"  %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :phone, "Phone*", :class => 'col-form-label' %>
+          <%= f.text_field :phone, autocomplete: "phone", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["phone"].length}ch;" %>
+          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:phone}"  %>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :country, :class => 'col-form-label' %>
+          <%= f.text_field :country, autocomplete: "country", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["country"].length}ch;" %>
+          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:country}"  %>
+        </div>
+
+        <div class="form-group register-group">
+          <%= f.submit "Update", :class => 'btn btn-primary' %>
+        </div>
+
+        <hr />
+
+        <small class="form-text text-muted">*Lorem Ipsum Set Fluctuat Nec Mergitur</small>
+
+      <% end %>
+
     </div>
+  </div>
 
-    <div class="form-group row">
-      <%= f.label :gender, :class => 'col-form-label' %>
-      <%= f.select(:gender, options_for_select(['']  + User.genders.keys.map {|gender| [gender.humanize, gender]}, resource["gender"]), {}, {:class => 'form-control custom-input', :disabled => true, :style => "width: #{User.genders.keys.max_by(&:size).length}ch;"}) %>
-      <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:gender}"  %>
+  <div class='card form-wrapper'>
+    <div class='card-body'>
+
+      <h2>Change user</h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="form-group">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => 'form-control', :placeholder => 'Email' %>
+          <small class="form-text text-muted">Keep in mind your email is used for authentication on the site</small>
+          
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password, autocomplete: "new-password", :class => 'form-control', :placeholder => 'Password' %>
+          <small class="form-text text-muted">Leave blank if you don't want to change your password.
+          <% if @minimum_password_length %>
+            Or choose a new password with <%= @minimum_password_length %> characters minimum
+          <% end %>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => 'form-control', :placeholder => 'Confirm password' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.password_field :current_password, autocomplete: "new-password", :class => 'form-control', :placeholder => 'Current password' %>
+          <small class="form-text text-muted">We need your current password to confirm those changes</small>
+        </div>
+
+        <div class="form-group register-group">
+          <%= f.submit "Update", :class => 'btn btn-primary' %>
+        </div>
+
+      <% end %>
     </div>
+  </div>
 
-    <div class="form-group row">
-      <%= f.label :phone, "Phone*", :class => 'col-form-label' %>
-      <%= f.text_field :phone, autocomplete: "phone", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["phone"].length}ch;" %>
-      <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:phone}"  %>
+  <div class='card form-wrapper'>
+    <div class='card-body'>
+
+      <h2>Delete account</h2>
+
+      <p>Unhappy with our services? You can always come back anytime! 
+
+      <div class="form-group register-group">
+        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#DeleteAccountModal" value="Delete" />
+      </div>
+
+      <div class="modal fade" id="DeleteAccountModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><strong>:(</strong></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to leave us?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <%= button_to "Delete", registration_path(resource_name), method: :delete, :class => 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    
-    <div class="form-group row">
-      <%= f.label :country, :class => 'col-form-label' %>
-      <%= f.text_field :country, autocomplete: "country", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["country"].length}ch;" %>
-      <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:country}"  %>
-    </div>
-
-    <div class="form-group register-group">
-      <%= f.submit "Update", :class => 'btn btn-primary' %>
-    </div>
-
-    <hr />
-
-    <small class="form-text text-muted">*Lorem Ipsum Set Fluctuat Nec Mergitur</small>
-
-  <% end %>
-
-  </div>
-</div>
-
-<div class='card form-wrapper form-profile'>
-<div class='card-body'>
-
-<h2>Change user</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Delete account</h3>
-
-<p>Unhappy? <%= button_to "Delete", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-  </div>
 </div>
