@@ -1,14 +1,14 @@
 class ActivitiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_activity, only: %i[show edit update destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /activities
-  # GET /activities.json
   def index
-    @activities = Activity.all
+    @activities = Activity.all.where(user: current_user).order("#{sort_column} #{sort_direction}")
   end
 
   # GET /activities/1
-  # GET /activities/1.json
   def show; end
 
   # GET /activities/new
@@ -20,11 +20,9 @@ class ActivitiesController < ApplicationController
   def edit; end
 
   # POST /activities
-  # POST /activities.json
   def create
-    @activity = Activity.new(activity_params)
-    @activity.user_id = current_user.id
-    logger.info @activity
+    @user = User.find(current_user.id)
+    @activity = @user.activities.create(activity_params)
 
     respond_to do |format|
       if @activity.save
@@ -42,7 +40,6 @@ class ActivitiesController < ApplicationController
   end
 
   # PATCH/PUT /activities/1
-  # PATCH/PUT /activities/1.json
   def update
     respond_to do |format|
       if @activity.update(activity_params)
@@ -60,7 +57,6 @@ class ActivitiesController < ApplicationController
   end
 
   # DELETE /activities/1
-  # DELETE /activities/1.json
   def destroy
     @activity.destroy
     respond_to do |format|
@@ -79,12 +75,21 @@ class ActivitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def activity_params
-    params.fetch(:activity, {}).permit(
+    params.require(:activity).permit(
       :name,
       :date,
       :duration,
-      :rating,
-      :user_id
+      :rating
     )
-  end #  logger.info 'LoremIpsum'
+  end
+
+  # Sortable columns
+  protected
+  def sort_column
+    Activity.column_names.include?(params[:sort]) ? params[:sort] : "date"
+  end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
+
 end

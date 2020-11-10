@@ -5,5 +5,10 @@ Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  resources :activities
+  # resources :users do
+  #   resources :activities
+  # end
+
+  resources :activities 
+  
 end

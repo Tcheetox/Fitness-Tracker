@@ -92,6 +92,16 @@ body {
 }
 
 /* NEW ACTIVITY */
+form.to-new-activity{
+  width:min-content;
+  margin:0 auto 0 auto;
+}
+form.to-new-activity > input{
+  padding-left:1.5rem;
+  padding-right:1.5rem;
+  border-radius: 100px;
+}
+
 .new-activity-wrapper .activities input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -119,4 +129,13 @@ body {
 }
 .new-activity-wrapper input.submit {
   float: right;
+}
+
+/* My activities */
+.table .row-even{
+  background-color: #EBF4FF;
+}
+.table i.fa{
+  font-weight: unset;
+  font-size: 0.9rem;
 }
