@@ -23,6 +23,8 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   def create
     @activity = Activity.new(activity_params)
+    @activity.user_id = current_user.id
+    logger.info @activity
 
     respond_to do |format|
       if @activity.save
@@ -77,6 +79,12 @@ class ActivitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def activity_params
-    params.fetch(:activity, {}).permit(:name, :date, :duration)
-  end
+    params.fetch(:activity, {}).permit(
+      :name,
+      :date,
+      :duration,
+      :rating,
+      :user_id
+    )
+  end #  logger.info 'LoremIpsum'
 end

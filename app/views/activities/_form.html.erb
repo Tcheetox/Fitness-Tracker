@@ -1,26 +1,50 @@
-<%= form_with(model: activity, local: true) do |form| %>
-  <% if activity.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
 
-      <ul>
-      <% activity.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class="new-activity-wrapper">
+
+    <%= form_with(model: activity, local: true) do |f| %>
+      <% if activity.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+          <ul>
+            <% activity.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+      <h2>What did you do?</h2>
+      <div class="form-group activities">
 
-    <%= form.label :date %>
-    <%= form.text_field :date %>
+        <% Activity.names.keys.each do |name| %>
+          <%= f.label name do %>
+            <%= f.radio_button :name, name %>
+            <%= image_tag "128/#{name}", alt: name %>
+          <% end %>          
+        <% end %>
+      
+      </div>
 
-    <%= form.label :duration %>
-    <%= form.text_field :duration %>
+      <h2>When was it?</h2>
+      <div class="form-group row date-wrapper">
+        <%= f.label :date, :class => 'col-form-label' %>
+        <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d'), :class => "form-control date-picked" %>
 
-    <%= form.submit %>
+        <%= f.label :duration, :class => 'col-form-label' %>
+        <%= f.number_field :duration, min: 1, :class => "form-control duration" %>
+        <%= f.label "minutes", "minutes", :class => 'col-form-label' %>
+      </div>
+ 
+      <h2>How did you feel?</h2>
+      <div class="form-group row rating">
+      <%= f.label "awful" %>
+      <% for i in 1..10 %>
+        <%= f.radio_button :rating, i %>
+      <% end %>
+      <%= f.label "excellent" %>
+      </div>
+
+      <%= f.submit "Submit", :class => 'btn btn-primary submit' %>
+    <% end %>
+
   </div>
-<% end %>
