@@ -13,13 +13,19 @@
         </div>
       <% end %>
 
+      <script>
+        $(function () {
+            $("[data-toggle='tooltip']").tooltip();
+        });
+      </script>
+
       <h2>What did you do?</h2>
       <div class="form-group activities">
 
         <% Activity.names.keys.each do |name| %>
           <%= f.label name do %>
             <%= f.radio_button :name, name %>
-            <%= image_tag "128/#{name}", alt: name %>
+            <%= image_tag "128/#{name}", alt: name, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => name.humanize %>
           <% end %>          
         <% end %>
       
@@ -37,11 +43,12 @@
  
       <h2>How did you feel?</h2>
       <div class="form-group row rating">
-      <%= f.label "awful" %>
-      <% for i in 1..10 %>
-        <%= f.radio_button :rating, i %>
-      <% end %>
-      <%= f.label "excellent" %>
+        <% Activity.ratings.keys.each do |rating| %>
+          <div class="form-check rating">
+            <%= f.radio_button :rating, rating %>
+            <%= f.label rating, "for" => rating %>
+          </div>          
+        <% end %>
       </div>
 
       <%= f.submit "Submit", :class => 'btn btn-primary submit' %>

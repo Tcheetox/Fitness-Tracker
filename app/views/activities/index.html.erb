@@ -1,5 +1,9 @@
 <h1>Dashboard</h1>
 
+<div class="random-quote-wrapper">
+  <p class="lead quote"><%= random_quote %></p>
+</div>
+
 <%= button_to "+ New activity", new_activity_path, method: :get, :form_class => 'to-new-activity', :class => 'btn btn-primary' %>
 
 <h2>My activities</h2>
@@ -27,7 +31,7 @@
         <td><%= activity.date.strftime('%Y-%m-%d') %></td>
         <td><%= link_to activity.name.humanize, activity %></td>
         <td><%= activity.duration %></td>
-        <td><%= activity.rating %></td>
+        <td><%= activity.rating.humanize %></td>
         <td>
           <%= link_to edit_activity_path(activity) do %>
             <%= fa_icon "edit" %>

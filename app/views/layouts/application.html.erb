@@ -30,9 +30,13 @@
       </div>
     <% end %>
 
-    <div class="container" >
+    <% if current_page?(root_path) %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class="container app-container">
+        <%= yield %>
+      </div>
+    <% end %>
     
   </body>
 </html>

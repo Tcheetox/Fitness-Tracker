@@ -5,6 +5,13 @@ class Activity < ApplicationRecord
   validates :duration, presence: true
   validates :rating, presence: true
   validates :user_id, presence: true
+  enum rating: {
+    awful: 0,
+    bad: 1,
+    neutral: 2,
+    good: 3,
+    excellent: 4
+  }
   enum name: {
          swimming: 0,
          running: 1,

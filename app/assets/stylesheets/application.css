@@ -18,20 +18,77 @@ body {
   outline: none !important;
 }
 
+/* https://coolors.co/010a14-0f3e54-1c7293-2184ab-ffffff-f5f5f5-e0e0e0-8f8f8f */
+:root{
+  --main-color: #1c7293;
+  --main-color-very-light: #C8E1EA;
+  --main-color-lighter: #2184AB;
+  --main-color-darker: #0f3e54;
+  --light-gray: #F5F5F5;
+  --gray:#E0E0E0;
+  --dark-gray:#8F8F8F;
+
+  --transition-speed: 300ms;
+}
+
+/* BOOTSTRAP OVERRIDE */
+.btn-primary{
+  background-color: var(--main-color-lighter) !important;
+  border-color: var(--main-color) !important;
+}
+.btn-primary:hover{
+  background-color: var(--main-color) !important;
+}
+.app-container a{
+  color: var(--main-color) !important;
+}
+
 /* HEADER */
+.navbar{
+  background-color:var(--main-color) !important;
+  border-bottom: 1px solid var(--dark-gray);
+}
 .nav-item.separator {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   color: rgba(255, 255, 255, 0.5);
 }
 .nav-item.login-item {
-  margin-left: 3rem;
+  margin-left: 4rem;
 }
 
-/* FORMS */
+/* APPLICATION */
+.app-container {
+  margin-top: 4rem;
+}
+.navigation-links {
+  padding:0 1rem 1.5rem 1rem;
+}
+.navigation-links .back:before {
+  content:'';
+  border: solid var(--main-color);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 0.25rem;
+  transform: rotate(135deg);
+}
+span.separator{
+  padding:0 0.3rem 0 0.3rem;
+  font-size: 1.2rem;
+  color:var(--main-color);
+}
+
+/* APPLICATION ALERTS */
+.alert{
+  position:absolute;
+  width:100%;
+  border-radius:unset;
+}
+
+/* SIGN-IN SIGN-UP FORMS */
 .form-wrapper {
   max-width: 400px;
-  margin: 3rem auto auto auto;
+  margin: 4rem auto auto auto;
 }
 .form-group.row {
   margin: 0 0 0.5rem 0;
@@ -85,6 +142,7 @@ body {
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-between;
+  margin-top: -2rem;
 }
 .edit-profile-wrapper .card {
   flex-basis: 50%;
@@ -94,7 +152,7 @@ body {
 /* NEW ACTIVITY */
 form.to-new-activity{
   width:min-content;
-  margin:0 auto 0 auto;
+  margin:3rem auto 3rem auto;
 }
 form.to-new-activity > input{
   padding-left:1.5rem;
@@ -108,9 +166,43 @@ form.to-new-activity > input{
 }
 .new-activity-wrapper .activities input[type="radio"] + img {
   cursor: pointer;
+  max-width: 110px;
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  transition: all var(--transition-speed);
 }
-.new-activity-wrapper .activities input[type="radio"]:checked + img {
-  outline: 2px solid lightblue;
+.new-activity-wrapper .activities input[type="radio"]:checked + img,
+.new-activity-wrapper .activities input[type="radio"]:hover + img {
+  border-color: var(--main-color-lighter);
+  background-color: var(--main-color-very-light);
+}
+.form-group.activities{
+  margin-bottom:0;
+}
+.tooltip{
+  margin-top: 3px;
+}
+.new-activity-wrapper .row.rating,
+.new-activity-wrapper .row.date-wrapper
+{
+  margin-top:1rem;
+  margin-bottom: 2rem;
+}
+.form-check.rating
+{
+  width: min-content; 
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+.new-activity-wrapper .activities {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.new-activity-wrapper .activities > label {
+  padding: 1rem;
 }
 
 .date-wrapper label,
@@ -118,7 +210,7 @@ form.to-new-activity > input{
   margin: auto 1rem auto 1rem;
 }
 .date-picked {
-  max-width: 300px;
+  max-width: 200px;
 }
 .duration {
   max-width: 80px;
@@ -131,11 +223,36 @@ form.to-new-activity > input{
   float: right;
 }
 
-/* My activities */
+/* DASHBOARD */
 .table .row-even{
   background-color: #EBF4FF;
 }
 .table i.fa{
   font-weight: unset;
   font-size: 0.9rem;
+}
+.random-quote-wrapper{
+  width:90%;
+  text-align:center;
+  margin:2rem auto 2rem auto;
+}
+
+/* HOME */
+body, html{
+  height:100%;
+}
+.jumbotron-fluid{
+  background: url(/assets/background.jpg) no-repeat center center;
+  min-height:100%;
+}
+.jumbotron .display-4{
+  font-weight:600;
+}
+.jumbotron .container{
+  width:max-content;
+  margin-right:15%;
+  margin-top:3rem;
+}
+.jumbotron-info{
+  margin-top:3rem;
 }

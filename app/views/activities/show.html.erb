@@ -1,4 +1,7 @@
-<h1><%= @activity.name %></h1>
+<h1><%= @activity.name.humanize %></h1>
+<div class="navigation-links">
+    <%= link_to 'Back', activities_path, :class => "back" %> 
+    <span class="separator">|</span>
+    <%= link_to 'Edit', edit_activity_path(@activity) %>
+</div>
 
-<%= link_to 'Edit', edit_activity_path(@activity) %> |
-<%= link_to 'Back', activities_path %>

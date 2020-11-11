@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_activity, only: %i[show edit update destroy]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :random_quote
 
   # GET /activities
   def index
@@ -81,6 +81,17 @@ class ActivitiesController < ApplicationController
       :duration,
       :rating
     )
+  end
+
+  # Fetch random quote from external API
+  def random_quote
+    begin
+      json = JSON.parse RestClient.get 'https://type.fit/api/quotes'
+      r = rand(json.count)
+      "\"#{json[r]['text']}\" - #{json[r]['author']}"
+    rescue Exception => e
+      logger.info e
+    end
   end
 
   # Sortable columns
