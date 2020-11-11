@@ -1,15 +1,22 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_activity, only: %i[show edit update destroy]
-  helper_method :sort_column, :sort_direction, :random_quote
+  helper_method :sort_column, :sort_direction, :random_quote, :is_user_authorized
 
   # GET /activities
   def index
     @activities = Activity.all.where(user: current_user).order("#{sort_column} #{sort_direction}")
+
+    #TODO: make this data persistent (perhaps: use JS to store it in the frontend)
+    begin
+      @randomquotes = JSON.parse RestClient.get 'https://type.fit/api/quotes'
+    rescue Exception => e
+      logger.info e
+    end
   end
 
   # GET /activities/1
-  def show; end
+  def show;end
 
   # GET /activities/new
   def new
@@ -17,7 +24,7 @@ class ActivitiesController < ApplicationController
   end
 
   # GET /activities/1/edit
-  def edit; end
+  def edit;end
 
   # POST /activities
   def create
@@ -71,6 +78,9 @@ class ActivitiesController < ApplicationController
   private # Use callbacks to share common setup or constraints between actions.
   def set_activity
     @activity = Activity.find(params[:id])
+    unless current_user.id == @activity.user_id 
+      redirect_to activities_url, :alert => "Unauthorized access!"
+    end
   end
 
   # Only allow a list of trusted parameters through.
@@ -85,12 +95,11 @@ class ActivitiesController < ApplicationController
 
   # Fetch random quote from external API
   def random_quote
-    begin
-      json = JSON.parse RestClient.get 'https://type.fit/api/quotes'
-      r = rand(json.count)
-      "\"#{json[r]['text']}\" - #{json[r]['author']}"
-    rescue Exception => e
-      logger.info e
+    if @randomquotes.blank?
+      ""
+    else
+      quote = @randomquotes[rand(@randomquotes.count)]
+      "\"#{quote['text']}\" - #{quote['author']}"
     end
   end
 
