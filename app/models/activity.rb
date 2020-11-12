@@ -5,6 +5,7 @@ class Activity < ApplicationRecord
   validates :duration, presence: true
   validates :rating, presence: true
   validates :user_id, presence: true
+
   enum rating: { awful: 0, bad: 1, neutral: 2, good: 3, excellent: 4 }
   enum name: {
          swimming: 0,
@@ -22,4 +23,43 @@ class Activity < ApplicationRecord
          tennis: 12,
          yoga: 13
        }
+  
+  def self.get_kcal(a)
+      { 
+        "swimming" => 7, 
+        "running" => 10, 
+        "biking" => 8,
+        "badminton" => 6,
+        "basketball" => 7,
+        "boxing" => 8,
+        "fitness" => 9,
+        "football" => 7,
+        "gym" => 4,
+        "judo" => 9,
+        "motorbiking" => 6,
+        "rugby" => 7,
+        "tennis" => 13,
+        "yoga" => 3
+    }[a.downcase]
+  end
+  
+  def self.has_distance(a)
+    { 
+      "swimming" => true, 
+      "running" => true, 
+      "biking" => true,
+      "badminton" => false,
+      "basketball" => false,
+      "boxing" => false,
+      "fitness" => false,
+      "football" => false,
+      "gym" => false,
+      "judo" => false,
+      "motorbiking" => true,
+      "rugby" => false,
+      "tennis" => false,
+      "yoga" => false
+    }[a.downcase]
+  end
+
 end

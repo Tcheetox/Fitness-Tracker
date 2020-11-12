@@ -188,6 +188,9 @@ form.to-new-activity > input{
   margin-top:1rem;
   margin-bottom: 2rem;
 }
+.new-activity-wrapper .row.rating{
+  margin-left:-1.25rem;
+}
 .form-check.rating
 {
   width: min-content; 
@@ -200,18 +203,22 @@ form.to-new-activity > input{
   flex-wrap: wrap;
   justify-content: center;
 }
-.new-activity-wrapper .activities > label {
+.new-activity-wrapper .activities > label{
   padding: 1rem;
 }
-
-.date-wrapper label,
+.date-wrapper label{
+  margin: auto 0.5rem auto 1.2rem;
+}
+.date-wrapper label.secondary{
+  margin: auto 1.2rem auto 0.5rem;
+}
 .rating label {
   margin: auto 1rem auto 1rem;
 }
 .date-picked {
   max-width: 200px;
 }
-.duration {
+.number {
   max-width: 80px;
 }
 .rating input[type="radio"] {

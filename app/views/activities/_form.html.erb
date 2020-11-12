@@ -1,4 +1,5 @@
-
+  <%= javascript_tag 'initializeTooltip()' %>
+  
   <div class="new-activity-wrapper">
 
     <%= form_with(model: activity, local: true) do |f| %>
@@ -13,22 +14,15 @@
         </div>
       <% end %>
 
-      <script>
-        $(function () {
-            $("[data-toggle='tooltip']").tooltip();
-        });
-      </script>
 
       <h2>What did you do?</h2>
       <div class="form-group activities">
-
         <% Activity.names.keys.each do |name| %>
           <%= f.label name do %>
-            <%= f.radio_button :name, name %>
+            <%= f.radio_button :name, name, "onchange" => "adjustForm(#{Activity.has_distance(name)})" %>
             <%= image_tag "128/#{name}", alt: name, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => name.humanize %>
           <% end %>          
         <% end %>
-      
       </div>
 
       <h2>When was it?</h2>
@@ -37,8 +31,19 @@
         <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d'), :class => "form-control date-picked" %>
 
         <%= f.label :duration, :class => 'col-form-label' %>
-        <%= f.number_field :duration, min: 1, :class => "form-control duration" %>
-        <%= f.label "minutes", "minutes", :class => 'col-form-label' %>
+        <%= f.number_field :duration, min: 1, :class => "form-control number" %>
+        <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>
+        
+        <% if !activity.name.blank? && Activity.has_distance(activity.name) %>
+          <div class="row distance-wrapper">
+        <% else %>
+          <div class="row distance-wrapper" style="visibility:hidden">
+        <% end %>
+          <%= f.label "total", :class => 'col-form-label' %>
+          <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
+          <%= f.label "km", "km", :class => 'col-form-label secondary' %>
+        </div>
+
       </div>
  
       <h2>How did you feel?</h2>
