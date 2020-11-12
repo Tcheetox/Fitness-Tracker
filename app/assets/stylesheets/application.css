@@ -140,13 +140,12 @@ span.separator{
 .edit-profile-wrapper {
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: -2rem;
 }
 .edit-profile-wrapper .card {
-  flex-basis: 50%;
-  margin: 3rem 1rem 0rem 1rem;
+  flex-basis: 100%;
+  margin: 3rem 1.5rem auto 1.5rem;
 }
 
 /* NEW ACTIVITY */

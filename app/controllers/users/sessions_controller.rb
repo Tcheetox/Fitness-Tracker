@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-class Users::SessionsController < Devise::SessionsController # end #   super # def create # POST /resource/sign_in # end #   super # def new # GET /resource/sign_in # before_action :configure_sign_in_params, only: [:create]
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
-
+class Users::SessionsController < Devise::SessionsController # end #   super # def destroy # DELETE /resource/sign_out # end #   super # def create # POST /resource/sign_in # end #   super # def new # GET /resource/sign_in # before_action :configure_sign_in_params, only: [:create]
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

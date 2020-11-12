@@ -5,5 +5,5 @@ class User < ApplicationRecord # :confirmable, :lockable, :timeoutable, :trackab
          :rememberable,
          :validatable
   enum gender: { other: 0, male: 1, female: 2 }
-  has_many :activities
+  has_many :activities, dependent: :destroy
 end

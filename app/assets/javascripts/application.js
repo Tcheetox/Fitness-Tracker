@@ -18,13 +18,3 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-const localQuotes = localStorage.getItem("quotes")
-if (!localQuotes){
-   fetch('https://type.fit/api/quotes').then(response => response.json()).then(data => {
-    localStorage.setItem("quotes", JSON.stringify(data))
-    }) 
-}
-else
-{
-    console.log(JSON.parse(localQuotes))
-}
