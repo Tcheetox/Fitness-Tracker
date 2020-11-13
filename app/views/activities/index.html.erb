@@ -7,6 +7,9 @@
 <%= button_to "+ New activity", new_activity_path, method: :get, :form_class => 'to-new-activity', :class => 'btn btn-primary' %>
 
 <h2>My activities</h2>
+
+<%= pie_chart Activity.group(:name).sum(:duration) %>
+
 <table class="table">
   <thead class="thead-light">
     <tr>

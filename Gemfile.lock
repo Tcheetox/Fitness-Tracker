@@ -64,6 +64,7 @@ GEM
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
+    chartkick (3.4.2)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     devise (4.7.3)
@@ -188,6 +189,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.5)
+  chartkick
   devise
   jquery-rails
   puma (~> 3.7)

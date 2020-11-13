@@ -16,17 +16,13 @@ class Activity < ApplicationRecord
          boxing: 5,
          fitness: 6,
          football: 7,
-         gym: 8,
+         gymnastic: 8,
          judo: 9,
          motorbiking: 10,
          rugby: 11,
          tennis: 12,
          yoga: 13
        }
-
-  def self.get_kcal2
-    self.name
-  end
 
   def self.get_kcal(acti)
     {
@@ -38,7 +34,7 @@ class Activity < ApplicationRecord
       'boxing' => 8,
       'fitness' => 9,
       'football' => 7,
-      'gym' => 4,
+      'gymnastic' => 4,
       'judo' => 9,
       'motorbiking' => 6,
       'rugby' => 7,
@@ -59,7 +55,7 @@ class Activity < ApplicationRecord
       'boxing' => false,
       'fitness' => false,
       'football' => false,
-      'gym' => false,
+      'gymnastic' => false,
       'judo' => false,
       'motorbiking' => true,
       'rugby' => false,

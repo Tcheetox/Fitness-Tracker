@@ -230,6 +230,16 @@ form.to-new-activity > input{
 }
 
 /* DASHBOARD */
+svg > g:last-child{
+  pointer-events: none;
+}
+g > text{
+  text-transform: capitalize;
+}
+.table{
+  margin-top:1rem;
+  margin-bottom:1rem;
+}
 .table .row-even{
   background-color: #EBF4FF;
 }
