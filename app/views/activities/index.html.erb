@@ -1,6 +1,6 @@
 <h1>Dashboard</h1>
 
-<div class="random-quote-wrapper">
+<div class="random-quote-wrapper" >
   <p class="lead quote"><%= random_quote %></p>
 </div>
 
@@ -14,6 +14,7 @@
       <th scope="col"><%= sortable "date" %></th>
       <th scope="col"><%= sortable "name" %></th>
       <th scope="col"><%= sortable "duration", "Duration (min)" %></th>
+      <th scope="col">Kcal</th>
       <th scope="col"><%= sortable "rating", "Feeling" %></th>
       <th scope="col"></th>
       <th scope="col"></th>
@@ -31,15 +32,16 @@
         <td><%= activity.date.strftime('%Y-%m-%d') %></td>
         <td><%= link_to activity.name.humanize, activity %></td>
         <td><%= activity.duration %></td>
+        <td><%= number_with_delimiter(Activity.get_kcal(activity), :delimiter => ',') %></td>
         <td><%= activity.rating.humanize %></td>
         <td>
           <%= link_to edit_activity_path(activity) do %>
-            <%= fa_icon "edit" %>
+            <%= awesome "far fa-edit" %>
           <% end %>
         </td>
         <td>
           <%= link_to activity, method: :delete do %>
-            <%= fa_icon "trash-alt" %>
+            <%= awesome "far fa-trash-alt" %>
           <% end %>
         </td>
       </tr>

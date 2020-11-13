@@ -14,29 +14,29 @@ gem 'uglifier', '>= 1.3.0' # gem 'therubyracer', platforms: :ruby
 gem 'devise'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
-gem 'webpacker'
+#gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+#gem 'webpacker'
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5' # gem 'bcrypt', '~> 3.1.7'
+# gem 'coffee-rails', '~> 4.2' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5.2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# gem 'jbuilder', '~> 2.5' # gem 'bcrypt', '~> 3.1.7'
 # gem 'rest-client', '~> 2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+# group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw] # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  # gem 'byebug', platforms: %i[mri mingw x64_mingw] # Adds support for Capybara system testing and selenium driver
+  # gem 'capybara', '~> 2.13'
   # gem 'selenium-webdriver'
-end
+# end
 
-group :development do
+#group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-end
+  # gem 'web-console', '>= 3.3.0'
+#end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

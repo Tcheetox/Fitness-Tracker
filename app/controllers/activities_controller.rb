@@ -81,11 +81,19 @@ class ActivitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def activity_params
-    params.require(:activity).permit(:name, :date, :duration, :rating, :distance)
+    params.require(:activity).permit(
+      :name,
+      :date,
+      :duration,
+      :rating,
+      :distance
+    )
   end
 
   # Sortable columns
+
   protected
+
   def sort_column
     Activity.column_names.include?(params[:sort]) ? params[:sort] : 'date'
   end

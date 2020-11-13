@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController # https://github.com/heartcombo/devise#omniauth
-  # GET|POST /resource/auth/twitter
-  # def passthru
-  #   super
-  # end
-
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController # end #   super # def passthru # GET|POST /resource/auth/twitter # https://github.com/heartcombo/devise#omniauth
   # GET|POST /users/auth/twitter/callback
   # def failure
   #   super

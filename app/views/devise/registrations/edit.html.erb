@@ -1,5 +1,3 @@
-<%= javascript_tag 'adjustProfile()' %>
-
 <div class='edit-profile-wrapper'>
 
   <div class='card form-wrapper'>
@@ -14,31 +12,31 @@
         <div class="form-group row">
           <%= f.label :first_name, :class => 'col-form-label' %>
           <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["first_name"].length + 1}ch;" %>
-          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:first_name}" %>
+          <%= awesome "fas fa-user-edit", "for" => "#{resource_name}_#{:first_name}" %>
         </div>
 
         <div class="form-group row">
           <%= f.label :last_name, :class => 'col-form-label' %>
           <%= f.text_field :last_name, autocomplete: "family-name", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["last_name"].length + 1}ch;" %>
-          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:last_name}" %>
+          <%= awesome "fas fa-user-edit", "for" => "#{resource_name}_#{:last_name}" %>
         </div>
 
         <div class="form-group row">
           <%= f.label :gender, :class => 'col-form-label' %>
           <%= f.select(:gender, options_for_select(['']  + User.genders.keys.map {|gender| [gender.humanize, gender]}, resource["gender"]), {}, {:class => 'form-control custom-input', :disabled => true, :style => "width: #{User.genders.keys.max_by(&:size).length + 1}ch;"}) %>
-          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:gender}"  %>
+          <%= awesome "fas fa-user-edit", "for" => "#{resource_name}_#{:gender}"  %>
         </div>
 
         <div class="form-group row">
           <%= f.label :phone, "Phone*", :class => 'col-form-label' %>
           <%= f.text_field :phone, autocomplete: "phone", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["phone"].length + 1}ch;" %>
-          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:phone}"  %>
+          <%= awesome "fas fa-user-edit", "for" => "#{resource_name}_#{:phone}"  %>
         </div>
         
         <div class="form-group row">
           <%= f.label :country, :class => 'col-form-label' %>
           <%= f.text_field :country, autocomplete: "country", :class => 'form-control custom-input', 'disabled' => 'input', :style => "width: #{resource["country"].length + 1}ch;" %>
-          <%= fa_icon "user-edit", "for" => "#{resource_name}_#{:country}"  %>
+          <%= awesome "fas fa-user-edit", "for" => "#{resource_name}_#{:country}"  %>
         </div>
 
         <div class="form-group register-group">

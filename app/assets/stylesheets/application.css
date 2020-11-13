@@ -124,7 +124,7 @@ span.separator{
 .form-wrapper select.custom-input:disabled {
   appearance: none;
 }
-.form-wrapper .fa {
+.form-wrapper em {
   margin: auto auto auto 0;
   color: #888888;
   font-size: 0.8rem;
@@ -233,7 +233,7 @@ form.to-new-activity > input{
 .table .row-even{
   background-color: #EBF4FF;
 }
-.table i.fa{
+.table em{
   font-weight: unset;
   font-size: 0.9rem;
 }
@@ -241,6 +241,17 @@ form.to-new-activity > input{
   width:90%;
   text-align:center;
   margin:2rem auto 2rem auto;
+}
+.current:after{
+  content:'';
+  display:inline-block;
+  border-left: 0.4rem solid transparent;
+  border-right: 0.4rem solid transparent;
+  border-bottom: 0.5rem solid var(--main-color);
+  margin-left:0.3rem;
+}
+.current.desc:after{
+  transform: rotate(180deg);
 }
 
 /* HOME */
@@ -261,4 +272,10 @@ body, html{
 }
 .jumbotron-info{
   margin-top:3rem;
+}
+
+.testor{
+  padding-left:10rem;
+
+  font-size:3rem;
 }
