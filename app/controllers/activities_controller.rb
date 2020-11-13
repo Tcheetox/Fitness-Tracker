@@ -5,10 +5,15 @@ class ActivitiesController < ApplicationController
 
   # GET /activities
   def index
-    @activities =
-      Activity.all.where(user: current_user).order(
-        "#{sort_column} #{sort_direction}"
-      )
+    if sort_column == "kcal"
+      if sort_direction == "asc"
+        @activities = Activity.all.where(user: current_user).sort_by { |a| Activity.get_kcal(a) }
+      else
+        @activities = Activity.all.where(user: current_user).sort_by { |a| -Activity.get_kcal(a) }
+      end
+    else
+      @activities = Activity.all.where(user: current_user).order("#{sort_column} #{sort_direction}")
+    end
   end
 
   # GET /activities/1
@@ -95,7 +100,7 @@ class ActivitiesController < ApplicationController
   protected
 
   def sort_column
-    Activity.column_names.include?(params[:sort]) ? params[:sort] : 'date'
+    Activity.column_names.include?(params[:sort]) ? params[:sort] : params[:sort] == "kcal" ? "kcal" : "date"
   end
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'

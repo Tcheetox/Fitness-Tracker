@@ -24,6 +24,10 @@ class Activity < ApplicationRecord
          yoga: 13
        }
 
+  def self.get_kcal2
+    self.name
+  end
+
   def self.get_kcal(acti)
     {
       'swimming' => 7,
