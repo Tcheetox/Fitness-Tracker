@@ -216,7 +216,7 @@ form.to-new-activity > input{
   margin: auto 1rem auto 1rem;
 }
 .date-picked {
-  max-width: 200px;
+  max-width: 150px;
 }
 .number {
   max-width: 80px;
@@ -262,6 +262,19 @@ g > text{
 }
 .current.desc:after{
   transform: rotate(180deg);
+}
+.activities-filter-wrapper{
+  background-color:var(--main-color-very-light);
+  margin-top:0.7rem !important;
+  padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+  border-radius: 5px;
+}
+.activities-filter-wrapper > *{
+  padding-left:0.5rem;
+  padding-right:0.5rem;
+}
+.activities-filter-wrapper .activity-filter{
+  max-width: 120px;
 }
 
 /* HOME */

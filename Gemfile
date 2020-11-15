@@ -15,6 +15,7 @@ gem 'devise'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'chartkick'
+gem 'groupdate'
 # gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # gem 'webpacker'
 

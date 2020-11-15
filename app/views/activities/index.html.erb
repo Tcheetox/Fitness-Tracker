@@ -7,8 +7,18 @@
 <%= button_to "+ New activity", new_activity_path, method: :get, :form_class => 'to-new-activity', :class => 'btn btn-primary' %>
 
 <h2>My activities</h2>
+<div class="form-group row activities-filter-wrapper">
+  <%= label_tag "filter by", nil, class: 'col-form-label' %>
+  <%= select_tag "filter", options_from_collection_for_select(@all_activities.select(:name).distinct, :name, "name", params[:by]), :include_blank => true, class: "form-control activity-filter", :onchange => "activitiesFilterByName()" %>
+  <%= label_tag "since", "since", class: 'col-form-label' %>
+  <%= date_field_tag "filter-since", params[:since], class: 'form-control date-picked', :onchange => "activitiesFilterByDate()" %>
+</div>
 
-<%= pie_chart Activity.group(:name).sum(:duration) %>
+<% if params[:by] %>
+  <%= area_chart @activities.group_by_day(:date).sum(:duration), discrete: true %>
+<% else %>
+  <%= pie_chart @activities.group(:name).sum(:duration) %>
+<% end %>
 
 <table class="table">
   <thead class="thead-light">

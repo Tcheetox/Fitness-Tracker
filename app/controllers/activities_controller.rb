@@ -1,18 +1,25 @@
 class ActivitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_activity, only: %i[show edit update destroy]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :filter_by, :since
 
   # GET /activities
   def index
-    if sort_column == "kcal"
-      if sort_direction == "asc"
-        @activities = Activity.all.where(user: current_user).sort_by { |a| Activity.get_kcal(a) }
-      else
-        @activities = Activity.all.where(user: current_user).sort_by { |a| -Activity.get_kcal(a) }
-      end
+    @all_activities = Activity.all.where(user: current_user)
+
+    #logger.info ">>>>>>"
+    #logger.info since
+
+    if sort_column == 'kcal'
+      @activities =
+        @all_activities.where(name: filter_by, date: since).sort_by do |a|
+          Activity.get_kcal(a) * (sort_direction == 'asc' ? 1 : -1)
+        end
     else
-      @activities = Activity.all.where(user: current_user).order("#{sort_column} #{sort_direction}")
+      @activities =
+        @all_activities.where(name: filter_by, date: since).order(
+          "#{sort_column} #{sort_direction}"
+        )
     end
   end
 
@@ -95,13 +102,30 @@ class ActivitiesController < ApplicationController
     )
   end
 
-  # Sortable columns
+  def since
+    if params[:since]
+      params[:since].to_date..Float::INFINITY
+    else
+      -Float::INFINITY..Float::INFINITY
+    end
+  end
 
-  protected
+  def filter_by
+    if Activity.names.include?(params[:by])
+      Activity.names[params[:by]]
+    else
+      0..Float::INFINITY
+    end
+  end
 
   def sort_column
-    Activity.column_names.include?(params[:sort]) ? params[:sort] : params[:sort] == "kcal" ? "kcal" : "date"
+    if Activity.column_names.include?(params[:sort])
+      params[:sort]
+    else
+      params[:sort] == 'kcal' ? 'kcal' : 'date'
+    end
   end
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
   end
