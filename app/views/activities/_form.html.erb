@@ -16,7 +16,7 @@
       <div class="form-group activities">
         <% Activity.names.keys.each do |name| %>
           <%= f.label name do %>
-            <%= f.radio_button :name, name, "onchange" => "adjustForm(#{Activity.has_distance(name)})" %>
+            <%= f.radio_button :name, name, "onchange" => "adjustForm(#{Activity.dist(name)})" %>
             <%= image_tag "128/#{name}", alt: name, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => name.humanize %>
           <% end %>          
         <% end %>

@@ -25,7 +25,7 @@ class Activity < ApplicationRecord
          yoga: 13
        }
 
-  def self.get_kcal(acti)
+  def kcal
     {
       'swimming' => 7,
       'running' => 10,
@@ -42,11 +42,11 @@ class Activity < ApplicationRecord
       'tennis' => 13,
       'yoga' => 3
     }[
-      acti.name.downcase
-    ] * acti.duration
+      name
+    ] * duration
   end
 
-  def self.has_distance(a)
+  def self.dist(_name)
     {
       'swimming' => true,
       'running' => true,
@@ -63,7 +63,19 @@ class Activity < ApplicationRecord
       'tennis' => false,
       'yoga' => false
     }[
-      a.downcase
+      _name
     ]
+  end
+
+  def dist
+    Activity.dist(name)
+  end
+
+  def has_dist
+    dist && !distance.blank? ? true : false
+  end
+
+  def pace
+    has_dist ? distance / duration : 0
   end
 end

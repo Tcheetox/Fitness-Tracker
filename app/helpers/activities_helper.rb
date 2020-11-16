@@ -1,34 +1,51 @@
 module ActivitiesHelper
-
   def add_chevron(dir)
-    dir == "up" ? awesome("fas fa-chevron-up") : awesome("fas fa-chevron-down")
+    dir == 'up' ? awesome('fas fa-chevron-up') : awesome('fas fa-chevron-down')
   end
 
-  def compare_performance(previousActivity)
-    unless @activity.distance.blank? || previousActivity.distance.blank?
-      raw("You went through " + ((@activity.distance > previousActivity.distance)? "<strong>longer</strong>" + add_chevron("up"): "<strong>shorter</strong>" + add_chevron("down")) + " distance at a " +
-      (pace > pace(previousActivity)? "<strong>faster</strong>" + add_chevron("up"): "<strong>slower</strong>" + add_chevron("down")) + " speed")
+  def compare_performance
+    unless !@activity.has_dist || !@previous_activity.has_dist
+      raw(
+        'You went through ' +
+          (
+            if (@activity.distance > @previous_activity.distance)
+              '<strong>longer</strong>' + add_chevron('up')
+            else
+              '<strong>shorter</strong>' + add_chevron('down')
+            end
+          ) + ' distance at a ' +
+          (
+            if (@activity.pace > @previous_activity.pace)
+              '<strong>faster</strong>' + add_chevron('up')
+            else
+              '<strong>slower</strong>' + add_chevron('down')
+            end
+          ) + ' speed'
+      )
     end
   end
 
-  def compare_rating(previousActivity)
-    (@activity.rating > previousActivity.rating) ? raw("Better <strong>feeling</strong>") + add_chevron("up") : raw("Worse <strong>feeling</strong>") + add_chevron("down")
-  end
-
-  def compare_duration(previousActivity)
-    (@activity.duration > previousActivity.duration) ? raw("<strong>Longer</strong> workout") + add_chevron("up") : raw("<strong>Shorter</strong> workout") + add_chevron("down")
-  end
-
-  def pace(param_activity = nil)
-    activity = param_activity.nil? ? @activity : param_activity
-    activity.distance.blank? ? "N/A" : number_with_precision(@activity.distance / @activity.duration, :precision => 3)
-  end
-
-  def pace_from_params(dist, dur)
-    if dist.blank? || dur.blank?
-      0
+  def compare_rating
+    if @activity.rating > @previous_activity.rating
+      raw('Better <strong>feeling</strong>') + add_chevron('up')
     else
-      number_with_precision(dist / dur, :precision => 3)
+      raw('Worse <strong>feeling</strong>') + add_chevron('down')
+    end
+  end
+
+  def compare_duration
+    if @activity.duration > @previous_activity.duration
+      raw('<strong>Longer</strong> workout') + add_chevron('up')
+    else
+      raw('<strong>Shorter</strong> workout') + add_chevron('down')
+    end
+  end
+
+  def print_pace
+    if @activity.pace != 0
+      number_with_precision(@activity.pace, precision: 3)
+    else
+      'N/A'
     end
   end
 
