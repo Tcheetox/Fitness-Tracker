@@ -5,3 +5,32 @@
     <%= link_to 'Edit', edit_activity_path(@activity) %>
 </div>
 
+<div class="activity-wrapper">
+    <h2>Highlights</h2>
+    <p>Performed the <strong><%= @activity.date.strftime("%d of %B, %Y") %></strong>.<p>
+    <p>You felt <strong><%= @activity.rating %></strong> during your <strong><%= @activity.duration %></strong> minutes workout.</p>
+    <p>Estimated calories consumption of <strong><%= number_with_delimiter(Activity.get_kcal(@activity), :delimiter => ',') %></strong> KCal.</p>
+    <% if Activity.has_distance(@activity.name) %>
+        <p>Traveled distance of <strong><%= @activity.distance %></strong> km at an average pace of <strong><%= pace() %></strong> km/minute.</p>
+    <% end %>
+
+    <h2>Comparison</h2>
+    <% if @comparable_activities.count <= 1 %>
+        <p>This is your first <%= @activity.name %> workout, <strong>congratulations</strong>!</p>
+    <% else %>
+        <p><%= compare_rating(@previous_activity) %></p>
+        <p><%= compare_duration(@previous_activity) %></p>
+        
+        <% if Activity.has_distance(@activity.name) %>
+            <p><%= compare_performance(@previous_activity) %></p>
+            <%= column_chart [
+            {name:"distance", data: @comparable_activities.group_by_day(:date).sum(:distance)}, 
+            {name:"duration", data: @comparable_activities.group_by_day(:date).sum(:duration)},
+            {name:"pace", data: @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, pace_from_params(a.distance, a.duration)]}.to_h}
+        ], discrete: true %>
+
+        <% else %>
+            <%= column_chart @comparable_activities.group_by_day(:date).sum(:duration), xtitle:"Duration", discrete: true %>
+        <% end %>
+    <% end %>
+</div>
