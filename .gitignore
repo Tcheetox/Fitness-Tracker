@@ -8,7 +8,7 @@
 /.bundle
 
 # Ignore configs
-/config/initializers/twilio.rb
+/config/initializers/twilio*
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
