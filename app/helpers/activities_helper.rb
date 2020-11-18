@@ -68,6 +68,6 @@ module ActivitiesHelper
   def random_quote
     json = JSON.load File.open 'app/assets/quotes.json'
     r = rand(json.count)
-    "\"#{json[r]['text']}\" - #{json[r]['author']}"
+    json[r]['author'].blank? ? "\"#{json[r]['text']}\"" : "\"#{json[r]['text']}\" - #{json[r]['author']}"
   end
 end

@@ -15,9 +15,9 @@
 </div>
 
 <% if params[:by] %>
-  <%= area_chart @activities.group_by_day(:date).sum(:duration), discrete: true %>
+  <%= area_chart @chart_activities.group_by_day(:date).sum(:duration), discrete: true %>
 <% else %>
-  <%= pie_chart @activities.group(:name).sum(:duration) %>
+  <%= pie_chart @chart_activities.group(:name).sum(:duration) %>
 <% end %>
 
 <table class="table">

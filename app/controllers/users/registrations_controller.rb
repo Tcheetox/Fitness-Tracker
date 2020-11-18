@@ -34,23 +34,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def normalize_phone(phone)
-    phone.start_with?("00") ? phone[2,phone.length].prepend("+") : phone
+    phone.start_with?('00') ? phone[2, phone.length].prepend('+') : phone
   end
 
-  protected 
+  protected
+
   def update_resource(resource, params)
     if %i[email password password_confirmation].any? { |k| params.key?(k) }
       resource.update_with_password(params)
     else
-      if !params["phone"].blank?
-        params["phone"] = normalize_phone(params["phone"])
+      if !params['phone'].blank?
+        params['phone'] = normalize_phone(params['phone'])
       end
       resource.update_without_password(params)
     end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  protected 
+
+  protected
+
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,

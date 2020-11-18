@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function () {
     // Enable smart scroll for turbolinks
     document.querySelectorAll("a").forEach(e => {
         if (e.getAttribute("href").includes(window.location.pathname) && !e.getAttribute("href").includes(window.location.pathname + "/")) {
-            e.addEventListener("click", () => turbolinkScrollY = window.scrollY)
+            e.addEventListener("click", smartTurboScroll)
         }
     })
     if (turbolinkScrollY !== 0) {
@@ -33,14 +33,16 @@ const appendCurrentUrl = (k,v) => {
     return url
 }
 
+const smartTurboScroll = () => turbolinkScrollY = window.scrollY 
+
 const activitiesFilterByName = () => {
+    smartTurboScroll()
     const actiName = document.getElementById("filter").value
-    turbolinkScrollY = window.scrollY
     Turbolinks.visit(appendCurrentUrl("by", actiName), { action: "replace" })
 }
 
 const activitiesFilterByDate = () => {
+    smartTurboScroll()
     const since = document.getElementById("filter-since").value
-    turbolinkScrollY = window.scrollY
     Turbolinks.visit(appendCurrentUrl("since", since), { action: "replace" })
 }

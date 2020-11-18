@@ -6,18 +6,8 @@ class ActivitiesController < ApplicationController
   # GET /activities
   def index
     @all_activities = Activity.all.where(user: current_user)
-
-    if sort_column == 'kcal'
-      @activities =
-        @all_activities.where(name: filter_by, date: since).sort_by do |a|
-          Activity.get_kcal(a) * (sort_direction == 'asc' ? 1 : -1)
-        end
-    else
-      @activities =
-        @all_activities.where(name: filter_by, date: since).order(
-          "#{sort_column} #{sort_direction}"
-        )
-    end
+    @chart_activities = @all_activities.where(name: filter_by, date: since)
+    @activities = sort_column != "kcal" ? @chart_activities.order("#{sort_column} #{sort_direction}") : @chart_activities.sort_by{ |a| a.kcal * (sort_direction == 'asc' ? 1 : -1) }
   end
 
   # GET /activities/1
