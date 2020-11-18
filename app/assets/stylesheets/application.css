@@ -124,6 +124,9 @@ span.separator{
 .form-wrapper select.custom-input:disabled {
   appearance: none;
 }
+#user_phone:disabled{
+  pointer-events: none;
+}
 .form-wrapper em {
   margin: auto auto auto 0;
   color: #888888;

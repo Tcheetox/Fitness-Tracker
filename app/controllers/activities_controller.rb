@@ -43,7 +43,6 @@ class ActivitiesController < ApplicationController
   def create
     @user = User.find(current_user.id)
     @activity = @user.activities.create(activity_params)
-
     unless @activity.date.blank?
       # We can omit that for now, the form will throw an error anyway!
       @activity.date =
