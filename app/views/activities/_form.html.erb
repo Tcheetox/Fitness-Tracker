@@ -1,22 +1,12 @@
 <div class="new-activity-wrapper">
 
     <%= form_with(model: activity, local: true) do |f| %>
-      <% if activity.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
-          <ul>
-            <% activity.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
 
       <h2>What did you do?</h2>
       <div class="form-group activities">
         <% Activity.names.keys.each do |name| %>
           <%= f.label name do %>
-            <%= f.radio_button :name, name, "onchange" => "adjustForm(#{Activity.dist(name)})" %>
+            <%= f.radio_button :name, name, :checked => (name == Activity.names.keys.first), "onchange" => "adjustForm(#{Activity.dist(name)})" %>
             <%= image_tag "128/#{name}", alt: name, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => name.humanize %>
           <% end %>          
         <% end %>
@@ -25,16 +15,15 @@
       <h2>When was it?</h2>
       <div class="form-group row date-wrapper">
         <%= f.label :date, :class => 'col-form-label' %>
-        <%= f.date_field :date, :class => "form-control date-picked" %>
-
+        <%= f.date_field :date, :value => activity.date.blank? ? Time.now.strftime('%Y-%m-%d') : activity.date.strftime('%Y-%m-%d'), :class => "form-control date-picked #{error_class(activity,:date)}" %>
         <%= f.label :duration, :class => 'col-form-label' %>
-        <%= f.number_field :duration, min: 1, :class => "form-control number" %>
+        <%= f.number_field :duration, min: 1, :class => "form-control number #{error_class(activity,:duration)}" %>
         <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>
         
-        <% if !activity.name.blank? && Activity.has_distance(activity.name) %>
+        <% if !activity.name.blank? && Activity.dist(activity.name) %>
           <div class="row distance-wrapper">
         <% else %>
-          <div class="row distance-wrapper" style="visibility:hidden">
+          <div class="row distance-wrapper">
         <% end %>
           <%= f.label "total", :class => 'col-form-label' %>
           <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
@@ -44,7 +33,7 @@
       </div>
  
       <h2>How did you feel?</h2>
-      <div class="form-group row rating">
+      <div class="form-group row rating <%= error_class(activity, :rating) %>">
         <% Activity.ratings.keys.each do |rating| %>
           <div class="form-check rating">
             <%= f.radio_button :rating, rating %>

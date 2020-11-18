@@ -58,6 +58,10 @@ body {
 }
 
 /* APPLICATION */
+.rating.is-invalid,
+.text-red{
+  color:red !important;
+}
 .app-container {
   margin-top: 4rem;
 }
@@ -219,10 +223,10 @@ form.to-new-activity > input{
   margin: auto 1rem auto 1rem;
 }
 .date-picked {
-  max-width: 150px;
+  max-width: 170px;
 }
 .number {
-  max-width: 80px;
+  max-width: 95px;
 }
 .rating input[type="radio"] {
   cursor: pointer;

@@ -9,8 +9,8 @@ class Activity < ApplicationRecord
   enum rating: { awful: 0, bad: 1, neutral: 2, good: 3, excellent: 4 }
 
   enum name: {
-         swimming: 0,
-         running: 1,
+         running: 0,
+         swimming: 1,
          biking: 2,
          badminton: 3,
          basketball: 4,
