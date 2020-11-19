@@ -44,6 +44,11 @@ body {
 }
 
 /* HEADER */
+.navbar-text{
+  font-style:italic;
+  font-size: 0.9rem;
+  margin-top:3px;
+}
 .navbar{
   background-color:var(--main-color) !important;
   border-bottom: 1px solid var(--dark-gray);
@@ -194,9 +199,6 @@ form.to-new-activity > input{
 {
   margin-top:1rem;
   margin-bottom: 2rem;
-}
-.new-activity-wrapper .row.rating{
-  margin-left:-1.25rem;
 }
 .form-check.rating
 {

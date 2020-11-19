@@ -15,29 +15,21 @@
       <h2>When was it?</h2>
       <div class="form-group row date-wrapper">
         <%= f.label :date, :class => 'col-form-label' %>
-        <%= f.date_field :date, :value => activity.date.blank? ? Time.now.strftime('%Y-%m-%d') : activity.date.strftime('%Y-%m-%d'), :class => "form-control date-picked #{error_class(activity,:date)}" %>
+        <%= f.date_field :date, :value => activity.date.blank? ? Time.now.strftime('%Y-%m-%d') : activity.date.strftime('%Y-%m-%d'), :class => "form-control date-picked" %>
         <%= f.label :duration, :class => 'col-form-label' %>
-        <%= f.number_field :duration, min: 1, :class => "form-control number #{error_class(activity,:duration)}" %>
-        <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>
-        
-        <% if !activity.name.blank? && Activity.dist(activity.name) %>
-          <div class="row distance-wrapper">
-        <% else %>
-          <div class="row distance-wrapper">
-        <% end %>
-          <%= f.label "total", :class => 'col-form-label' %>
-          <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
-          <%= f.label "km", "km", :class => 'col-form-label secondary' %>
-        </div>
-
+        <%= f.number_field :duration, min: 1, :class => "form-control number" %>
+        <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>  
+        <%= f.label "total", :class => 'col-form-label' %>
+        <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
+        <%= f.label "km", "km", :class => 'col-form-label secondary' %>
       </div>
  
       <h2>How did you feel?</h2>
-      <div class="form-group row rating <%= error_class(activity, :rating) %>">
+      <div class="form-group row rating">
         <% Activity.ratings.keys.each do |rating| %>
-          <div class="form-check rating">
-            <%= f.radio_button :rating, rating %>
-            <%= f.label rating, "for" => rating %>
+          <div class="rating custom-control custom-radio">
+            <%= f.radio_button :rating, rating, :class => "custom-control-input #{error_class(activity, :rating)}" %>
+            <%= f.label rating, "for" => rating, :class => "custom-control-label" %>
           </div>          
         <% end %>
       </div>
