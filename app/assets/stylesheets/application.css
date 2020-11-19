@@ -42,9 +42,14 @@ body {
 .app-container a{
   color: var(--main-color) !important;
 }
+.custom-radio input.custom-control-input:checked + .custom-control-label:before{
+  background-color:var(--main-color-lighter) !important; 
+  border-color:var(--main-color-lighter) !important;
+}
 
 /* HEADER */
-.navbar-text{
+.navbar-text,
+.punchline{
   font-style:italic;
   font-size: 0.9rem;
   margin-top:3px;
@@ -62,6 +67,42 @@ body {
   margin-left: 4rem;
 }
 
+/* FOOTER */
+footer{
+  margin-top: 4rem;
+  border-top: 1px solid var(--dark-gray);
+  background-color: #082434;
+  color: white;
+}
+.footer-copyright{
+  font-size:0.8rem;
+}
+footer a{
+  color: var(--gray);
+}
+footer em{
+  background-size: 80%;
+  background-position: 70% 0;
+  background-repeat: no-repeat;
+}
+em.fa-instagram{
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+}
+em.fa-facebook-square{
+  color:#3b5998;
+  background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 93%, transparent 93% );
+}
+em.fa-twitter-square{
+  color:#55acee;
+  background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 93%, transparent 93% );
+}
+em.fa-youtube-play{
+  color:#e52d27;
+  background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 83%, transparent 83% );
+}
+
 /* APPLICATION */
 .rating.is-invalid,
 .text-red{
@@ -69,6 +110,7 @@ body {
 }
 .app-container {
   margin-top: 4rem;
+  min-height:calc(100% - 4rem);
 }
 .navigation-links {
   padding:0 1rem 1.5rem 1rem;
@@ -85,6 +127,9 @@ span.separator{
   padding:0 0.3rem 0 0.3rem;
   font-size: 1.2rem;
   color:var(--main-color);
+}
+path, circle{
+  fill-opacity: 0.75;
 }
 
 /* APPLICATION ALERTS */
@@ -177,7 +222,7 @@ form.to-new-activity > input{
 }
 .new-activity-wrapper .activities input[type="radio"] + img {
   cursor: pointer;
-  max-width: 110px;
+  max-width: 100px;
   padding: 0.5rem;
   border: 2px solid transparent;
   border-radius: 20px;
@@ -187,6 +232,9 @@ form.to-new-activity > input{
 .new-activity-wrapper .activities input[type="radio"]:hover + img {
   border-color: var(--main-color-lighter);
   background-color: var(--main-color-very-light);
+}
+.new-activity-wrapper .activities input[type="radio"]:hover + img {
+  transform:scale(1.1);
 }
 .form-group.activities{
   margin-bottom:0;
@@ -245,12 +293,21 @@ svg > g:last-child{
 g > text{
   text-transform: capitalize;
 }
+.table th:first-child{
+  border-top-left-radius: 5px;
+}
+.table th:last-child{
+  border-top-right-radius: 5px;
+}
+.table th, .table td{
+  border:unset !important;
+}
 .table{
   margin-top:1rem;
   margin-bottom:1rem;
 }
 .table .row-even{
-  background-color: #EBF4FF;
+  background-color: #E1EFF4;
 }
 .table em{
   font-weight: unset;
@@ -277,6 +334,10 @@ g > text{
   margin-top:0.7rem !important;
   padding: 0.3rem 0.5rem 0.3rem 0.5rem;
   border-radius: 5px;
+
+  max-width:450px;
+  margin-left:auto !important;
+  margin-right:0 !important;
 }
 .activities-filter-wrapper > *{
   padding-left:0.5rem;

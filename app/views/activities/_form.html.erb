@@ -19,16 +19,19 @@
         <%= f.label :duration, :class => 'col-form-label' %>
         <%= f.number_field :duration, min: 1, :class => "form-control number" %>
         <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>  
-        <%= f.label "total", :class => 'col-form-label' %>
-        <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
-        <%= f.label "km", "km", :class => 'col-form-label secondary' %>
+        
+        <div class="row distance-wrapper">
+          <%= f.label "total", :class => 'col-form-label' %>
+          <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
+          <%= f.label "km", "km", :class => 'col-form-label secondary' %>
+        </div>
       </div>
  
       <h2>How did you feel?</h2>
       <div class="form-group row rating">
         <% Activity.ratings.keys.each do |rating| %>
           <div class="rating custom-control custom-radio">
-            <%= f.radio_button :rating, rating, :class => "custom-control-input #{error_class(activity, :rating)}" %>
+            <%= f.radio_button :rating, rating, :id => rating, :class => "custom-control-input #{error_class(activity, :rating)}" %>
             <%= f.label rating, "for" => rating, :class => "custom-control-label" %>
           </div>          
         <% end %>

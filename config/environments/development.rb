@@ -13,7 +13,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Ngrok
-  config.hosts << 'fee7fb8d06c0.ngrok.io'
+  config.hosts << "3c9bb2dabb98.ngrok.io"
 
   # Error fields
   config.action_view.field_error_proc = proc do |html_tag, instance|

@@ -13,7 +13,7 @@ class TwilioController < ApplicationController
   end
 
   def message_answer
-    s_message = params['Body'].downcase.split(' ')
+    s_message = params['Body'].gsub!("'","").downcase.split(' ')
     if s_message.first.include? 'add'
       r = add_handler(s_message)
     elsif s_message.first.include? 'list'

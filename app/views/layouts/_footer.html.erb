@@ -1,0 +1,71 @@
+<footer id="footer" class="page-footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3">
+                <h3 class="font-weight-bold mt-5 mb-3">Move & Groove</h3> 
+                <span class="punchline">Keep moving!</span>
+                <hr class="clearfix w-100 d-md-none">
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="font-weight-bold text-uppercase mt-5 mb-3">Links</h5>
+                <ul class="list-unstyled text-uppercase">
+                    <li><%= link_to "Home", root_path %></li>
+                    <li><%= link_to "Dashboard", activities_url %></li>
+                    <li><%= link_to "How it works", root_path %></li>
+                    <li><%= link_to "Log in", new_user_session_path %> | <%= link_to "Sign up", new_user_registration_path %></li>
+                </ul>
+                <hr class="clearfix w-100 d-md-none">
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="font-weight-bold text-uppercase mt-5 mb-3">Follow us</h5>
+                <ul class="socials list-unstyled text-uppercase">
+                    <li>
+                        <%= awesome "fa fa-facebook-square" %>
+                        <%= link_to "Facebook", "https://www.facebook.com/" %>
+                    </li>
+                    <li>
+                        <%= awesome "fab fa-instagram" %>
+                        <%= link_to "Instagram", "https://www.instagram.com/" %>
+                    </li>
+                    <li>
+                        <%= awesome "fa fa-twitter-square" %>
+                        <%= link_to "Twitter", "https://www.twitter.com/" %>
+                    </li>
+                    <li>
+                        <%= awesome "fa fa-youtube-play" %>
+                        <%= link_to "Youtube", "https://www.youtube.com/" %>
+                    </li>
+                </ul>
+                <hr class="clearfix w-100 d-md-none">
+            </div>
+
+            <div class="col-md-3">
+                <h5 class="font-weight-bold text-uppercase mt-5 mb-3">Contact</h5>
+                <ul class="list-unstyled text-uppercase">
+                    <li>
+                        <%= mail_to "support@moveandgroove.com", name="Support" %>
+                    </li>
+                    <li>
+                        <%= link_to "Phone", "tel:+1(666)123456" %>
+                    </li> 
+                </ul>
+
+                <hr class="clearfix w-100 d-md-none">
+                <h5 class="font-weight-bold text-uppercase mt-4 mb-3">More</h5>
+                <ul class="list-unstyled text-uppercase">
+                    <li><%= link_to "Terms and conditions", root_path %></li>
+                    <li><%= link_to "Privacy policy", root_path %></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="clearfix w-100">
+        <div class="footer-copyright text-center pb-3">
+            © 2020 Copyright <a href="#">Move & Groove.</a> All rights reserved.
+        </div>
+
+    </div>
+</footer>
