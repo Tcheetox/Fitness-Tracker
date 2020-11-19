@@ -7,7 +7,9 @@ $(document).on('turbolinks:load', function () {
 
     // Enable smart scroll for turbolinks
     document.querySelectorAll("a").forEach(e => {
-        if (e.getAttribute("href").includes(window.location.pathname) && !e.getAttribute("href").includes(window.location.pathname + "/")) {
+        if (e.getAttribute("href").includes(window.location.pathname) 
+            && !e.getAttribute("href").includes("#")
+            && !e.getAttribute("href").includes(window.location.pathname + "/")) {
             e.addEventListener("click", smartTurboScroll)
         }
     })

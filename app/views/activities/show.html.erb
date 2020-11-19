@@ -6,15 +6,15 @@
 </div>
 
 <div class="activity-wrapper">
-    <h2>Highlights</h2>
-    <p>Performed the <strong><%= @activity.date.strftime("%d of %B, %Y") %></strong>.<p>
-    <p>You felt <strong><%= @activity.rating %></strong> during your <strong><%= @activity.duration %></strong> minutes workout.</p>
-    <p>Estimated calories consumption of <strong><%= number_with_delimiter(@activity.kcal, :delimiter => ',') %></strong> KCal.</p>
+    <h2 class="headline">Highlights</h2>
+    <p>Performed the <strong><%= @activity.date.strftime("%d of %B, %Y") %></strong><p>
+    <p>You felt <strong><%= @activity.rating %></strong> during your <strong><%= @activity.duration %></strong> minutes workout</p>
+    <p>Estimated calories consumption of <strong><%= number_with_delimiter(@activity.kcal, :delimiter => ',') %></strong> KCal</p>
     <% if @activity.has_dist %>
-        <p>Traveled distance of <strong><%= @activity.distance %></strong> km at an average pace of <strong><%= print_pace %></strong> km/minute.</p>
+        <p>Traveled distance of <strong><%= @activity.distance %></strong> km at an average pace of <strong><%= print_pace %></strong> km/minute</p>
     <% end %>
 
-    <h2>Comparison</h2>
+    <h2 class="headline">Comparison</h2>
     <% if @comparable_activities.count <= 1 %>
         <p>This is your first <%= @activity.name %> workout, <strong>congratulations</strong>!</p>
     <% else %>

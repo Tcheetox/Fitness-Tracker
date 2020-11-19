@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def error_class(resource, field)
-    !resource.errors.messages[field].blank? ? "is-invalid" : ""
+    !resource.errors.messages[field].blank? ? 'is-invalid' : ''
   end
 end

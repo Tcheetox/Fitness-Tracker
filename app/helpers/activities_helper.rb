@@ -1,26 +1,34 @@
 module ActivitiesHelper
   def add_chevron(dir)
-    dir == 'up' ? awesome('fas fa-chevron-up') : awesome('fas fa-chevron-down')
+    if dir == 'up'
+      awesome('fas fa-chevron-up')
+    else
+      dir == 'down' ? awesome('fas fa-chevron-down') : awesome('fas fa-equals')
+    end
   end
 
   def compare_performance
     unless !@activity.has_dist || !@previous_activity.has_dist
       raw(
-        'You went through ' +
+        'You went through <strong>' +
           (
             if (@activity.distance > @previous_activity.distance)
-              '<strong>longer</strong>' + add_chevron('up')
+              'longer' + add_chevron('up')
+            elsif (@activity.distance < @previous_activity.distance)
+              'shorter' + add_chevron('down')
             else
-              '<strong>shorter</strong>' + add_chevron('down')
+              'the same' + add_chevron('equal')
             end
-          ) + ' distance at a ' +
+          ) + '</strong>distance at a <strong>' +
           (
             if (@activity.pace > @previous_activity.pace)
-              '<strong>faster</strong>' + add_chevron('up')
+              'faster' + add_chevron('up')
+            elsif (@activity.pace < @previous_activity.pace)
+              'slower' + add_chevron('down')
             else
-              '<strong>slower</strong>' + add_chevron('down')
+              'similar' + add_chevron('equal')
             end
-          ) + ' speed'
+          ) + '</strong>speed'
       )
     end
   end
@@ -28,16 +36,20 @@ module ActivitiesHelper
   def compare_rating
     if @activity.rating > @previous_activity.rating
       raw('Better <strong>feeling</strong>') + add_chevron('up')
-    else
+    elsif @activity.rating < @previous_activity.rating
       raw('Worse <strong>feeling</strong>') + add_chevron('down')
+    else
+      raw('Same <strong>feeling</strong>') + add_chevron('equal')
     end
   end
 
   def compare_duration
     if @activity.duration > @previous_activity.duration
-      raw('<strong>Longer</strong> workout') + add_chevron('up')
+      raw('<strong>Longer</strong> time workout') + add_chevron('up')
+    elsif @activity.duration < @previous_activity.duration
+      raw('<strong>Shorter</strong> time workout') + add_chevron('down')
     else
-      raw('<strong>Shorter</strong> workout') + add_chevron('down')
+      raw('<strong>Same</strong> time workout') + add_chevron('equal')
     end
   end
 
@@ -68,6 +80,10 @@ module ActivitiesHelper
   def random_quote
     json = JSON.load File.open 'app/assets/quotes.json'
     r = rand(json.count)
-    json[r]['author'].blank? ? "\"#{json[r]['text']}\"" : "\"#{json[r]['text']}\" - #{json[r]['author']}"
+    if json[r]['author'].blank?
+      "\"#{json[r]['text']}\""
+    else
+      "\"#{json[r]['text']}\" - #{json[r]['author']}"
+    end
   end
 end

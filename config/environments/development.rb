@@ -13,12 +13,13 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Ngrok
-  config.hosts << "3c9bb2dabb98.ngrok.io"
+  config.hosts << '3c9bb2dabb98.ngrok.io'
 
   # Error fields
-  config.action_view.field_error_proc = proc do |html_tag, instance|
-    html_tag.gsub("form-control", "form-control is-invalid").html_safe
-  end
+  config.action_view.field_error_proc =
+    proc do |html_tag, instance|
+      html_tag.gsub('form-control', 'form-control is-invalid').html_safe
+    end
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

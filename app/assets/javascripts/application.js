@@ -20,3 +20,25 @@
 //= require rails-ujs
 
 //= require chartkick
+
+$(document).on('turbolinks:load', function () {
+    // Hide warnings after 3.5s
+    const banner = document.querySelector(".alert")
+    if (banner !== null) setTimeout(() => {
+        banner.style.visibility = "hidden"
+    }, 3500)
+
+    // Display back to top button only when we have scrolled in the page
+    const btop = document.querySelector(".back-to-top")
+    if (btop !== null) {
+        const btopHandler = () => {
+            if (window.scrollY > 100) {
+                btop.style.opacity = 1
+            } else {
+                btop.style.opacity = 0
+            }
+        }
+        btopHandler()
+        window.addEventListener('scroll', btopHandler)
+    }
+})
