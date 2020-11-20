@@ -6,7 +6,7 @@
       <div class="form-group activities">
         <% Activity.names.keys.each do |name| %>
           <%= f.label name do %>
-            <%= f.radio_button :name, name, :checked => (name == Activity.names.keys.first), "onchange" => "adjustForm(#{Activity.dist(name)})" %>
+            <%= f.radio_button :name, name, :checked => (activity.name.blank? ? name == Activity.names.keys.first : name == activity.name), "onchange" => "adjustForm(#{Activity.dist(name)})" %>
             <%= image_tag "128/#{name}", alt: name, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => name.humanize %>
           <% end %>          
         <% end %>
@@ -14,16 +14,21 @@
 
       <h2>When was it?</h2>
       <div class="form-group row date-wrapper">
-        <%= f.label :date, :class => 'col-form-label' %>
-        <%= f.date_field :date, :value => activity.date.blank? ? Time.now.strftime('%Y-%m-%d') : activity.date.strftime('%Y-%m-%d'), :class => "form-control date-picked" %>
-        <%= f.label :duration, :class => 'col-form-label' %>
-        <%= f.number_field :duration, min: 1, :class => "form-control number" %>
-        <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>  
-        
-        <div class="row distance-wrapper">
-          <%= f.label "total", :class => 'col-form-label' %>
-          <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
-          <%= f.label "km", "km", :class => 'col-form-label secondary' %>
+        <div class="special-row">
+          <%= f.label :date, :class => 'col-form-label' %>
+          <%= f.date_field :date, :value => activity.date.blank? ? Time.now.strftime('%Y-%m-%d') : activity.date.strftime('%Y-%m-%d'), :class => "form-control date-picked" %>
+        </div>
+        <div class="special-row">
+          <%= f.label :duration, :class => 'col-form-label' %>
+          <%= f.number_field :duration, min: 1, :class => "form-control number" %>
+          <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>  
+        </div>
+        <div class="special-row">
+          <div class="row distance-wrapper">
+            <%= f.label "total", :class => 'col-form-label' %>
+            <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
+            <%= f.label "km", "km", :class => 'col-form-label secondary' %>
+          </div>
         </div>
       </div>
  
@@ -37,7 +42,9 @@
         <% end %>
       </div>
 
-      <%= f.submit "Submit", :class => 'btn btn-primary submit' %>
+      <div class="submit-wrapper">
+        <%= f.submit "Submit", :class => 'btn btn-primary submit' %>
+      </div>
     <% end %>
 
   </div>

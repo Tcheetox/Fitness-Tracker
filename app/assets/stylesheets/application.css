@@ -51,6 +51,9 @@ body {
 }
 
 /* HEADER */
+.navbar-text{
+  margin-right:auto;
+}
 .navbar-text,
 .punchline{
   font-style:italic;
@@ -60,6 +63,18 @@ body {
 .navbar{
   background-color:var(--main-color) !important;
   border-bottom: 1px solid var(--dark-gray);
+}
+.navbar-collapse.collapsing,
+.navbar-collapse.show{
+  padding-left:1rem;
+}
+.navbar-collapse.collapsing .separator,
+.navbar-collapse.show .separator{
+  display:none;
+}
+.navbar-collapse.collapsing .login-item,
+.navbar-collapse.show .login-item{
+  margin-left:unset;
 }
 .nav-item.separator {
   padding-top: 0.5rem;
@@ -137,7 +152,7 @@ span.separator{
   font-size: 1.2rem;
   color:var(--main-color);
 }
-path, circle{
+path, circle, rect{
   fill-opacity: 0.75;
 }
 
@@ -272,11 +287,14 @@ form.to-new-activity > input{
 .new-activity-wrapper .activities > label{
   padding: 1rem;
 }
+.new-activity-wrapper .submit-wrapper{
+  padding-bottom: 3rem;
+}
 .date-wrapper label{
-  margin: auto 0.5rem auto 1.2rem;
+  margin: auto 0.5rem auto 1rem;
 }
 .date-wrapper label.secondary{
-  margin: auto 1.2rem auto 0.5rem;
+  margin: auto 1rem auto 0.5rem;
 }
 .rating label {
   margin: auto 1rem auto 1rem;
@@ -369,6 +387,7 @@ body, html{
 }
 .jumbotron .container{
   width:max-content;
+  max-width: 100%;
   margin-right:15%;
   margin-top:3rem;
 }
@@ -383,7 +402,8 @@ body, html{
 .headline{
   margin-bottom: 1rem;
 }
-.home-info{
+.home-info,
+.row-remote-wrapper{
   margin-top: 5rem;
 }
 .dashboard-demo{
@@ -406,12 +426,22 @@ span.bullet{
   vertical-align: middle;
   width: 3rem;
   height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
   text-align: center;
   border-radius: 100%;
   border: 1px solid var(--main-color);
 }
-.home-info .row:last-child{
-  margin-top: 6rem;
+.process-info{
+  flex-wrap: nowrap;
+  margin-bottom: 0.5rem;
+}
+.process-info > p{
+  margin-top:auto;
+  margin-bottom:auto;
+}
+.process-wrapper{
+  margin-bottom: 6rem;
 }
 .remote-info{
   margin-top:1rem;
@@ -473,4 +503,7 @@ span.bullet{
 }
 .fa-equals{
   color: #FD7E14;
+}
+.special-row{
+  display:inline-flex;
 }

@@ -21,14 +21,17 @@
         <p><%= compare_rating %></p>
         <p><%= compare_duration %></p>
         
+        <% logger.info ">>>>>>>>" %>
+        <% logger.info @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, a.pace]}.to_h %>
+        <% logger.info @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, a.pace]}.push([:id, 'y1']).to_h %>
+
         <% if @activity.has_dist %>
             <p><%= compare_performance %></p>
             <%= column_chart [
             {name:"distance", data: @comparable_activities.group_by_day(:date).sum(:distance)}, 
             {name:"duration", data: @comparable_activities.group_by_day(:date).sum(:duration)},
-            {name:"pace", data: @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, a.pace]}.to_h}
-        ], discrete: true %>
-
+            {name:"pace", data: @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, a.pace]}}
+        ], library: { legend: { position: 'top' }, series: { 0 => {targetAxisIndex: 0 }, 1 => {targetAxisIndex: 0 }, 2 => {targetAxisIndex: 1} }} %>
         <% else %>
             <%= column_chart @comparable_activities.group_by_day(:date).sum(:duration), xtitle:"Duration", discrete: true %>
         <% end %>
