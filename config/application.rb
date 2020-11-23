@@ -1,7 +1,7 @@
 require_relative 'boot'
 
-#require 'rails/all'
-require 'rails'
+require 'rails/all'
+#require 'rails'
 
 # Include each railties manually, excluding `active_storage/engine`
 %w[

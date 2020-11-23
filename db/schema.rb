@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_123236) do
     t.integer 'duration'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.integer 'user_id'
+    t.bigint 'user_id'
     t.integer 'rating'
     t.integer 'name'
     t.float 'distance'

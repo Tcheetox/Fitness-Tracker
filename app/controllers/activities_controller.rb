@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
       Activity.all.where(
         user: current_user,
         name: @activity.name,
-        date: -Float::INFINITY..@activity.date.to_datetime
+        date: '0001-01-01 00:00:00'..@activity.date.to_datetime
       )
     @previous_activity = @comparable_activities.where.not(id: @activity.id).last
   end
