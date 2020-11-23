@@ -62,9 +62,9 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Assets pipeline test...
-  # config.public_file_server.enabled = true
-  # config.assets.compile = false
-  # config.assets.prefix = '/krenier/moveandgroove'
+  config.public_file_server.enabled = true
+  config.assets.compile = false
+  config.assets.prefix = '/krenier/moveandgroove'
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
