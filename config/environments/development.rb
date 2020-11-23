@@ -13,7 +13,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Ngrok
-  config.hosts << "ead39bea9f35.ngrok.io"
+  config.hosts << 'ead39bea9f35.ngrok.io'
 
   # Error fields
   config.action_view.field_error_proc =
@@ -60,6 +60,11 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+
+  # Assets pipeline test...
+  # config.public_file_server.enabled = true
+  # config.assets.compile = false
+  # config.assets.prefix = '/krenier/moveandgroove'
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
