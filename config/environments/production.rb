@@ -33,8 +33,8 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   # TODO: change later!!!
-  config.assets.compile = true
-  config.serve_static_assets = true
+  config.assets.compile = false # DOESN4T WORK
+  config.serve_static_assets = true # DOESN4T WORK
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
