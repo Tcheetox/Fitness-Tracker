@@ -78,6 +78,7 @@ GEM
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
+    ffi (1.13.1)
     ffi (1.13.1-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -103,8 +104,11 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.2)
     multipart-post (2.1.1)
+    mysql2 (0.5.3)
     mysql2 (0.5.3-x64-mingw32)
     nio4r (2.5.4)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.10-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
@@ -149,6 +153,8 @@ GEM
     ruby2_keywords (0.0.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -192,6 +198,7 @@ GEM
     zeitwerk (2.4.1)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
