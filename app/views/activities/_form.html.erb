@@ -43,6 +43,12 @@
       </div>
 
       <div class="submit-wrapper">
+        <% unless activity.name.blank? %>
+          <%= link_to activity, method: :delete do %>
+            <button type="button" class="btn btn-secondary btn-delete-activity">Delete</button>
+          <% end %>
+        <% end %>
+
         <%= f.submit "Submit", :class => 'btn btn-primary submit' %>
       </div>
     <% end %>
