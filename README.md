@@ -6,10 +6,10 @@ This fitness tracker has been realized as part of the Full-Stack developer path 
 
 Deliver a complete solution using Ruby on Rails where:
 
-- Users can sign-up and log-in
-- Manage profile
-- Track fitness habits
-- Edit fitness entries
+1. Users can sign-up and log-in
+2. Manage profile
+3. Track fitness habits
+4. Edit fitness entries
 
 In addition, users can add or consult their fitness activities via WhatsApp.
 This feature is developed using Twilio's API.
