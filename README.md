@@ -1,22 +1,24 @@
-# README
+# Move and Groove
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This fitness tracker has been realized as part of the Full-Stack developer path proposed by [OpenClassrooms](https://openclassrooms.com).
 
-Things you may want to cover:
+## Objective
 
-- Ruby version
+Deliver a complete solution using Ruby on Rails where:
 
-- System dependencies
+- Users can sign-up and log-in
+- Manage profile
+- Track fitness habits
+- Edit fitness entries
 
-- Configuration
+In addition, users can add or consult their fitness activities via WhatsApp.
+This feature is developed using Twilio's API.
 
-- Database creation
+## Content
 
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
+Ruby on Rails is used for both front-end and back-end - hosted in the same solution:
+- Bootstrap
+- MYSQL
+- Devise
+- Charkick (Google charts)
+- Twilio
