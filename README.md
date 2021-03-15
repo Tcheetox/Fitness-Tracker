@@ -20,5 +20,5 @@ Ruby on Rails is used for both front-end and back-end - hosted in the same solut
 - Bootstrap
 - MYSQL
 - Devise
-- Charkick (Google charts)
+- Chartkick (Google charts)
 - Twilio
