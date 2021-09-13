@@ -1,5 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.hosts << 'thekecha.com'
+  config.hosts << "127.0.0.1"
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -25,15 +27,15 @@ Rails.application.configure do
   # config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
-  # Apache or NGINX already handles this.
-  config.public_file_server.enabled = false #ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # Apache or NGINX can handle this xD
+  config.public_file_server.enabled = false
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-  config.assets.prefix = '/krenier/moveandgroove'
+  config.assets.prefix = '/krenier/moveandgroove/static'
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
