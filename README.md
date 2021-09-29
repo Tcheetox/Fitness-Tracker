@@ -2,8 +2,6 @@
 
 This fitness tracker has been realized as part of the Full-Stack developer path proposed by [OpenClassrooms](https://openclassrooms.com).
 
-[Browse the result](https://thekecha.com/krenier/moveandgroove)
-
 ## Objective
 
 Deliver a complete solution using Ruby on Rails where:
