@@ -2,12 +2,12 @@
   "name": "fitness_tracker",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "4.3.0",
+    "@rails/webpacker": "^5.4.3",
     "chartkick": "^3.2.1"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^0.20.1",
     "prettier": "^2.1.2",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^4.5.0"
   }
 }
