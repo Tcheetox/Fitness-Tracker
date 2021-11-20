@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^5.4.3",
-    "chartkick": "^3.2.1"
+    "chart.js": "^3.6.0",
+    "chartkick": "^4.1.1"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^0.20.1",
