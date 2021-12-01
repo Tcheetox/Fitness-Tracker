@@ -16,7 +16,7 @@ gem 'sass-rails', '>= 6.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 4.2.0'
 gem 'devise', '>= 4.8'
-gem 'bootstrap', '>= 4.6.1'
+gem 'bootstrap', '= 4.6.1'
 gem 'jquery-rails', '>= 4.4'
 gem 'chartkick', '>= 4.1.2'
 gem 'groupdate', '>= 5.2.2'
