@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # TODO: add redirect for anything before path?!
-  scope(path: '/krenier/moveandgroove') do
+  scope(path: '/moveandgroove') do
     root to: 'site#home'
 
     match '/twilio', to: 'twilio#index', via: %i[post]
