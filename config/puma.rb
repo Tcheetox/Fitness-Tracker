@@ -7,7 +7,7 @@
 #max_threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
 #min_threads_count = ENV.fetch('RAILS_MIN_THREADS') { max_threads_count }
 workers 1
-max_threads_count = 2
+max_threads_count = 1
 min_threads_count = 1
 threads min_threads_count, max_threads_count
 
