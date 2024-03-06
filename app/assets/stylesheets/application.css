@@ -89,6 +89,9 @@ body {
 footer a:hover {
     color: var(--main-color-lighter);
 }
+.jumbotron-fluid {
+    background-size: cover !important;
+}
 footer {
     margin-top: 5rem;
     border-top: 1px solid var(--dark-gray);
