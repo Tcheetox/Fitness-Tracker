@@ -5,15 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '3.0.2'
-# Run 'rails webpacker:install'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby '3.3.0' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 6.1.4.1'
 gem 'mysql2', '>= 0.5.3'
-gem 'puma', '>= 4.3.1'
-# Use SCSS for stylesheets
-gem 'sass-rails', '>= 6.0'
-# Use Uglifier as compressor for JavaScript assets
+gem 'puma', '>= 4.3.1' # Use SCSS for stylesheets
+gem 'sass-rails', '>= 6.0' # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 4.2.0'
 gem 'devise', '>= 4.8'
 gem 'bootstrap', '= 4.6.1'
@@ -25,9 +21,7 @@ gem 'webpacker', '>= 5.4.3'
 
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '>= 5.2.1' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.5' # gem 'bcrypt', '~> 3.1.7'
-# gem 'rest-client', '~> 2.1'
+gem 'turbolinks', '>= 5.2.1' # gem 'rest-client', '~> 2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
