@@ -11,9 +11,7 @@ max_threads_count = 1
 min_threads_count = 1
 threads min_threads_count, max_threads_count
 
-set_default_host '127.0.0.1'
-# Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-port Rails.env.production? ? 4002 : 3000
+set_default_host '127.0.0.1' # port Rails.env.production? ? 4002 : 3000
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -28,7 +26,7 @@ pidfile ENV.fetch('PIDFILE') { 'tmp/pids/server.pid' }
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-workers ENV.fetch("WEB_CONCURRENCY") { 0 }
+workers ENV.fetch('WEB_CONCURRENCY') { 0 }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
