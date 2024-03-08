@@ -17,7 +17,6 @@ gem 'jquery-rails', '>= 4.4'
 gem 'chartkick', '>= 4.1.2'
 gem 'groupdate', '>= 5.2.2'
 gem 'twilio-ruby', '>= 5.61.1'
-gem 'webpacker', '>= 5.4.3'
 
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 4.2' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
