@@ -1,0 +1,79 @@
+ @media (max-width: 767.98px) { 
+     .process-wrapper{
+         margin-bottom: 2rem !important;
+     }
+    .row-remote-wrapper{
+        display:flex;
+        flex-direction: column-reverse;
+      }
+      .row-remote-wrapper .col-md-6:first-child{
+        margin-top: 2rem;
+      }
+      .right-limited{
+          max-width: 100% !important;
+      }
+      
+      .card-edit-profile label,
+      .card-edit-profile .custom-input:not(:disabled){
+          width:100% !important;
+      }
+      .card-edit-profile .custom-input{
+          margin: -0.5rem 0 0 0 !important;
+      }
+      .card-edit-profile  em {
+           margin-top: 6px !important; 
+      }
+
+      .table,
+      .table em {
+          font-size:0.7rem !important;
+      }
+      .table th, .table td{
+          padding-left: 0.35rem !important;
+          padding-right: 0.35rem !important;
+      }
+      .table .thead-duration > a{
+          max-width: 3rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: block;
+      }
+
+      .activities-filter-wrapper > *{
+          padding-left:0.3rem !important;
+          padding-right:0.3rem !important;
+      }
+      .activities-filter-wrapper {
+          padding-left:0 !important;
+          padding-right:0 !important;
+      }
+      .activities-filter-wrapper .date-picked{
+          max-width: 140px !important;
+      }
+      .activities-filter-wrapper .activity-filter{
+          max-width: 85px !important;
+      }
+
+      .new-activity-wrapper .activities input[type="radio"] + img {
+        max-width: 80px !important;
+      }
+      .new-activity-wrapper .activities > label{
+          padding: 0.5rem !important;
+      }
+      .new-activity-wrapper .row.date-wrapper{
+          margin-bottom:1.5rem !important;
+      }
+      .new-activity-wrapper .special-row{
+          display:flex;
+          margin-top: 0.3rem;
+          margin-bottom: 0.3rem;
+      }
+      .new-activity-wrapper .date-wrapper label:first-child,
+      .new-activity-wrapper .distance-wrapper{
+          margin-left: 0 !important;
+      }
+      .new-activity-wrapper .date-wrapper{
+          padding-left:1rem !important;
+      }
+ } 

@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <div class="container">
+    <%= link_to "Move & Groove", root_path, :class => 'navbar-brand' %>
+    <span class="navbar-text">Keep moving!</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, :class => 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Dashboard", activities_url, :class => 'nav-link' %>
+        </li>
+
+        <% if user_signed_in? %>
+          <li class="nav-item login-item">
+            <%= link_to current_user.email.split('@')[0].capitalize(), edit_user_registration_path, :class => 'nav-link' %> 
+          </li>
+          <li class="nav-item separator">|</li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item login-item">
+            <%= link_to "Log in", new_user_session_path, :class => 'nav-link' %>
+          </li>
+          <li class="nav-item separator">|</li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link' %> 
+          </li>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+</nav>

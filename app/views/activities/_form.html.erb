@@ -1,0 +1,56 @@
+<div class="new-activity-wrapper">
+
+    <%= form_with(model: activity, local: true) do |f| %>
+
+      <h2>What did you do?</h2>
+      <div class="form-group activities">
+        <% Activity.names.keys.each do |name| %>
+          <%= f.label name do %>
+            <%= f.radio_button :name, name, :checked => (activity.name.blank? ? name == Activity.names.keys.first : name == activity.name), "onchange" => "adjustForm(#{Activity.dist(name)})" %>
+            <%= image_tag "128/#{name}.png", width: '100', height: '100', alt: name, "data-toggle" => "tooltip", "data-placement" => "bottom", "title" => name.humanize %>
+          <% end %>          
+        <% end %>
+      </div>
+
+      <h2>When was it?</h2>
+      <div class="form-group row date-wrapper">
+        <div class="special-row">
+          <%= f.label :date, :class => 'col-form-label' %>
+          <%= f.date_field :date, :value => activity.date.blank? ? Time.now.strftime('%Y-%m-%d') : activity.date.strftime('%Y-%m-%d'), :class => "form-control date-picked" %>
+        </div>
+        <div class="special-row">
+          <%= f.label :duration, :class => 'col-form-label' %>
+          <%= f.number_field :duration, min: 1, :class => "form-control number" %>
+          <%= f.label "minutes", "minutes", :class => 'col-form-label secondary' %>  
+        </div>
+        <div class="special-row">
+          <div class="row distance-wrapper">
+            <%= f.label "total", :class => 'col-form-label' %>
+            <%= f.number_field :distance, :step => "0.01", :class => "form-control number" %>
+            <%= f.label "km", "km", :class => 'col-form-label secondary' %>
+          </div>
+        </div>
+      </div>
+ 
+      <h2>How did you feel?</h2>
+      <div class="form-group row rating">
+        <% Activity.ratings.keys.each do |rating| %>
+          <div class="rating custom-control custom-radio">
+            <%= f.radio_button :rating, rating, :id => rating, :class => "custom-control-input #{error_class(activity, :rating)}" %>
+            <%= f.label rating, "for" => rating, :class => "custom-control-label" %>
+          </div>          
+        <% end %>
+      </div>
+
+      <div class="submit-wrapper">
+        <% unless activity.name.blank? %>
+          <%= link_to activity, method: :delete do %>
+            <button type="button" class="btn btn-secondary btn-delete-activity">Delete</button>
+          <% end %>
+        <% end %>
+
+        <%= f.submit "Submit", :class => 'btn btn-primary submit' %>
+      </div>
+    <% end %>
+
+  </div>

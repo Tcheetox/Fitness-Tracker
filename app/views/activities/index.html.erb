@@ -1,0 +1,63 @@
+<h1>Dashboard</h1>
+
+<div class="random-quote-wrapper" >
+  <p class="lead quote"><%= random_quote %></p>
+</div>
+
+<%= button_to "+ New activity", new_activity_path, method: :get, :form_class => 'to-new-activity', :class => 'btn btn-primary' %>
+
+<h2>My activities</h2>
+<div class="form-group row activities-filter-wrapper">
+  <%= label_tag "filter by", nil, class: 'col-form-label' %>
+  <%= select_tag "filter", options_from_collection_for_select(@all_activities.select(:name).distinct, :name, "name", params[:by]), :include_blank => true, class: "form-control activity-filter", :onchange => "activitiesFilterByName()" %>
+  <%= label_tag "since", "since", class: 'col-form-label' %>
+  <%= date_field_tag "filter-since", params[:since], class: 'form-control date-picked', :onchange => "activitiesFilterByDate()" %>
+</div>
+
+<% if params[:by] %>
+  <%= area_chart @chart_activities.group_by_day(:date).sum(:duration), discrete: true %>
+<% else %>
+  <%= pie_chart @chart_activities.group(:name).sum(:duration) %>
+<% end %>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><%= sortable "date" %></th>
+      <th scope="col"><%= sortable "name" %></th>
+      <th class="thead-duration" scope="col"><%= sortable "duration", "Duration (min)" %></th>
+      <th scope="col"><%= sortable "kcal" %></th>
+      <th scope="col"><%= sortable "rating", "Feeling" %></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activities.each_with_index do |activity, i| %>
+      <% if (i + 1).even? %>
+        <tr class="row-even">
+      <% else %>
+        <tr>
+      <% end %>
+        <th><%= i + 1 %></th>
+        <td><%= activity.date.strftime('%Y-%m-%d') %></td>
+        <td><%= link_to activity.name.humanize, activity %></td>
+        <td><%= activity.duration %></td>
+        <td><%= number_with_delimiter(activity.kcal, :delimiter => ',') %></td>
+        <td><%= activity.rating.humanize %></td>
+        <td>
+          <%= link_to edit_activity_path(activity) do %>
+            <%= awesome "far fa-edit" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to activity, method: :delete do %>
+            <%= awesome "far fa-trash-alt" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

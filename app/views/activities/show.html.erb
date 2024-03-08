@@ -1,0 +1,39 @@
+<h1><%= @activity.name.humanize %></h1>
+<div class="navigation-links">
+    <%= link_to 'Back', activities_path, :class => "back" %> 
+    <span class="separator">|</span>
+    <%= link_to 'Edit', edit_activity_path(@activity) %>
+</div>
+
+<div class="activity-wrapper">
+    <h2 class="headline">Highlights</h2>
+    <p>Performed the <strong><%= @activity.date.strftime("%d of %B, %Y") %></strong><p>
+    <p>You felt <strong><%= @activity.rating %></strong> during your <strong><%= @activity.duration %></strong> minutes workout</p>
+    <p>Estimated calories consumption of <strong><%= number_with_delimiter(@activity.kcal, :delimiter => ',') %></strong> KCal</p>
+    <% if @activity.has_dist %>
+        <p>Traveled distance of <strong><%= @activity.distance %></strong> km at an average pace of <strong><%= print_pace %></strong> km/minute</p>
+    <% end %>
+
+    <h2 class="headline">Comparison</h2>
+    <% if @comparable_activities.count <= 1 %>
+        <p>This is your first <%= @activity.name %> workout, <strong>congratulations</strong>!</p>
+    <% else %>
+        <p><%= compare_rating %></p>
+        <p><%= compare_duration %></p>
+        
+        <% logger.info ">>>>>>>>" %>
+        <% logger.info @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, a.pace]}.to_h %>
+        <% logger.info @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, a.pace]}.push([:id, 'y1']).to_h %>
+
+        <% if @activity.has_dist %>
+            <p><%= compare_performance %></p>
+            <%= column_chart [
+            {name:"distance", data: @comparable_activities.group_by_day(:date).sum(:distance)}, 
+            {name:"duration", data: @comparable_activities.group_by_day(:date).sum(:duration)},
+            {name:"pace", data: @comparable_activities.group_by_day(:date).map{ |a| [a.date.to_date, a.pace]}}
+        ], library: { legend: { position: 'top' }, series: { 0 => {targetAxisIndex: 0 }, 1 => {targetAxisIndex: 0 }, 2 => {targetAxisIndex: 1} }} %>
+        <% else %>
+            <%= column_chart @comparable_activities.group_by_day(:date).sum(:duration), xtitle:"Duration", discrete: true %>
+        <% end %>
+    <% end %>
+</div>
