@@ -25,13 +25,14 @@ Rails.application.configure do
 
     # Enable serving static files from the `/public` folder by default since
     # Apache or NGINX can handle this xD
-    config.public_file_server.enabled = true
+    #config.public_file_server.enabled = true
 
     # Compress CSS using a preprocessor.
     # config.assets.css_compressor = :sass
 
     # Do not fallback to assets pipeline if a precompiled asset is missed.
-    config.assets.compile = true #config.assets.prefix = '/moveandgroove/static'
+    config.assets.compile = true
+    config.assets.prefix = '/moveandgroove/static'
 
     # Enable serving of images, stylesheets, and JavaScripts from an asset server.
     # config.action_controller.asset_host = 'http://assets.example.com'
