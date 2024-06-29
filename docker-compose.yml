@@ -1,6 +1,7 @@
 services:
   fitness-tracker:
     restart: always
+    container_name: fitness-tracker
     build:
         context: .
         dockerfile: Dockerfile
