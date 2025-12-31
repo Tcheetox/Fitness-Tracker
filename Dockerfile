@@ -1,39 +1,43 @@
-# Use the official Ruby image
-FROM ruby:3.3.0-slim
+# ---- build stage ----
+FROM ruby:3.3.0-slim AS builder
 
-# Set environment variables
-ENV RAILS_ENV=production
-ENV RAILS_LOG_TO_STDOUT=true
+ENV RAILS_ENV=production \
+    RAILS_LOG_TO_STDOUT=true \
+    BUNDLER_WITHOUT="development test"
 
-# Install necessary dependencies
-RUN apt-get update -qq && apt-get install -y \
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     build-essential \
-    nodejs \
-    mariadb-client \
     libmariadb-dev \
+    nodejs \
     yarn \
     && rm -rf /var/lib/apt/lists/*
 
-# Set up working directory
 WORKDIR /app
 
-# Install bundler
-RUN gem install bundler
-
-# Copy the Gemfile and Gemfile.lock into the container
 COPY Gemfile Gemfile.lock ./
+RUN gem install bundler && bundle install --jobs=4 --retry=3
 
-# Install gems
-RUN bundle install
-
-# Copy the rest of the application code
 COPY . .
-
-# Precompile assets
 RUN bundle exec rake assets:precompile
 
-# Expose port 5004 to the Docker host
+# ---- runtime stage ----
+FROM ruby:3.3.0-slim
+
+ENV RAILS_ENV=production \
+    RAILS_LOG_TO_STDOUT=true \
+    BUNDLER_WITHOUT="development test"
+
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    mariadb-client \
+    nodejs \
+    yarn \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY --from=builder /app /app
+
 EXPOSE 5004
 
-# Start the Rails server
 CMD ["bundle", "exec", "rails", "server", "-p", "5004"]
