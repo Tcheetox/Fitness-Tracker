@@ -1,5 +1,5 @@
 # Use the official Ruby image
-FROM ruby:3.3.0-alpine
+FROM ruby:3.3.0-slim
 
 # Set environment variables
 ENV RAILS_ENV=production
