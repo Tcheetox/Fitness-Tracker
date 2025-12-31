@@ -26,8 +26,8 @@ COPY . .
 # Precompile assets
 RUN bundle exec rake assets:precompile
 
-# Expose port 4002 to the Docker host
-EXPOSE 4002
+# Expose port 5004 to the Docker host
+EXPOSE 5004
 
 # Start the Rails server
-CMD ["bundle", "exec", "rails", "server", "-p", "4002"]
+CMD ["bundle", "exec", "rails", "server", "-p", "5004"]

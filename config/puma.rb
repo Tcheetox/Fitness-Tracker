@@ -11,7 +11,7 @@ max_threads_count = 1
 min_threads_count = 1
 threads min_threads_count, max_threads_count
 
-set_default_host '127.0.0.1' # port Rails.env.production? ? 4002 : 3000
+set_default_host '127.0.0.1'
 
 # Specifies the `environment` that Puma will run in.
 #

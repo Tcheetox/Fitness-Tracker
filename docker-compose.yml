@@ -5,9 +5,9 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
-    command: bundle exec rails s -p 4002 -e production
+    command: bundle exec rails s -p 5004 -e production
     ports:
-      - '4002:4002'
+      - '5004:5004'
     environment:
       - RAILS_ENV=production
     volumes:
