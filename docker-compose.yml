@@ -11,7 +11,7 @@ services:
     environment:
       - RAILS_ENV=production
     volumes:
-      - /var/docker/fitness-tracker/data:/data
+      - /var/www/fitness-tracker/data:/data
     networks:
       - mariadb_mariadb_network
 
