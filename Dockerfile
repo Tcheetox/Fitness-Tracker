@@ -6,7 +6,14 @@ ENV RAILS_ENV=production
 ENV RAILS_LOG_TO_STDOUT=true
 
 # Install necessary dependencies
-RUN apt-get update -qq && apt-get install -y nodejs mariadb-client libmariadb-dev yarn
+#RUN apt-get update -qq && apt-get install -y nodejs mariadb-client libmariadb-dev yarn
+RUN apt-get update -qq && apt-get install -y \
+    build-essential \
+    nodejs \
+    mariadb-client \
+    libmariadb-dev \
+    yarn \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set up working directory
 WORKDIR /app
@@ -18,7 +25,7 @@ RUN gem install bundler
 COPY Gemfile Gemfile.lock ./
 
 # Install gems
-RUN bundle install
+RUN bundle install --without development test
 
 # Copy the rest of the application code
 COPY . .
