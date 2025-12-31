@@ -25,7 +25,7 @@ RUN gem install bundler
 COPY Gemfile Gemfile.lock ./
 
 # Install gems
-RUN bundle install --without development test
+RUN bundle install
 
 # Copy the rest of the application code
 COPY . .
